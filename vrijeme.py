@@ -3,53 +3,68 @@ import psutil
 import time
 import win32process
 import json
-import os
-from datetime import date
+import threading
 import sqlite3
+from datetime import date
 
-process_time = {}
-timestamp = {}
 
-pocetnoVrijeme = time.time()
-today = str(date.today())
-
-#konfiguracija baze podataka
-con = sqlite3.connect('data.db')
+con = sqlite3.connect('data.db', check_same_thread=False)
 cur = con.cursor()
 cur.execute('''CREATE TABLE IF NOT EXISTS usage
                 (date text, app text, time integer)''')
 
-def petSekundi(oldtime):
-    if time.time() - oldtime > 5:
-        return True
+class Vrijeme(threading.Thread):
+    process_time = {}
+    timestamp = {}
     
-    return False
+    today = str(date.today())
 
-while True:
-    current_app = psutil.Process(win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]).name().replace(".exe", "")
-    timestamp[current_app] = int(time.time())
-    time.sleep(1)
-    
-#gledamo ako je trenutna apk prvi put otvorena stavi vrijeme koristenja na 0
-    if current_app not in process_time.keys():
-        process_time[current_app] = 0
+
+    def petSekundi(self, oldtime):
         
-#odnosno ako nije povecaj vrijeme kao:
-#ukupnoVr + trenutnoVr - vrijeme kada je otvorena apk zapisno u timestampu    
-    process_time[current_app] = process_time[current_app]+int(time.time())-timestamp[current_app]
-    
-#svakih 5 sekundi azuriraj podatke u bazi    
-    if petSekundi(pocetnoVrijeme):
-        for open_app in process_time:
-            cur.execute('''SELECT * FROM usage WHERE date=? AND app=?''',(today, open_app))
+        if time.time() - oldtime > 5:
+            return True
+        
+        return False
+
+    def save_to_database(self):
+        for open_app in self.process_time:
+            cur.execute('''SELECT * FROM usage WHERE date=? AND app=?''',(self.today, open_app))
             result = cur.fetchone()
             if result:
-                cur.execute('''UPDATE usage SET time=? WHERE date=? AND app=?''',(result[2]+5, today, open_app))
+                cur.execute('''UPDATE usage SET time=? WHERE date=? AND app=?''',(result[2]+5, self.today, open_app))
             else:
                 cur.execute('''INSERT INTO usage(date,app,time) 
-                                VALUES (?,?,?)''',(today, open_app, process_time[open_app]))
+                                VALUES (?,?,?)''',(self.today, open_app, self.process_time[open_app]))
             con.commit()
 
-        pocetnoVrijeme = time.time();
-    
-    print(process_time)
+    def glavno(self):
+            #process_time = {}
+            #timestamp = {}
+            pocetnoVrijeme = time.time()
+
+            while True:
+                current_app = psutil.Process(win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]).name().replace(".exe", "")
+                self.timestamp[current_app] = int(time.time())
+                time.sleep(1)
+                
+            #gledamo ako je trenutna apk prvi put otvorena stavi vrijeme koristenja na 0
+                if current_app not in self.process_time.keys():
+                    self.process_time[current_app] = 0
+                    
+            #odnosno ako nije povecaj vrijeme kao:
+            #ukupnoVr + trenutnoVr - vrijeme kada je otvorena apk zapisno u timestampu    
+                self.process_time[current_app] = self.process_time[current_app]+int(time.time())-self.timestamp[current_app]
+                
+            #svakih 5 sekundi spremi podatke u json file    
+                if self.petSekundi(pocetnoVrijeme):
+                    self.save_to_database()
+                    pocetnoVrijeme = time.time()
+                
+                # print(self.process_time)
+
+
+
+
+
+
