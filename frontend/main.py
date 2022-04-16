@@ -2,6 +2,7 @@ import sys
 import os
 from ui_gui import *
 
+import resource_rc
 
 class MainWindow(QMainWindow):
 	
