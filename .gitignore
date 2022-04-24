@@ -1,2 +1,4 @@
 
 data.db
+__pycache__
+process.log
