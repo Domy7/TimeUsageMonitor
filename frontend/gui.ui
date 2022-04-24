@@ -20,6 +20,11 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item alignment="Qt::AlignTop">
      <widget class="QFrame" name="header_frame">
+      <property name="styleSheet">
+       <string notr="true">:pressed {
+	background-color: rgb(172, 226, 255)
+}</string>
+      </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
@@ -91,6 +96,9 @@
        </item>
        <item alignment="Qt::AlignRight">
         <widget class="QFrame" name="header_right_fr">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -115,6 +123,15 @@
           </property>
           <item>
            <widget class="QPushButton" name="minimize_button">
+            <property name="styleSheet">
+             <string notr="true">:hover {
+	background-color: rgb(48, 158, 255)
+}
+
+:pressed {
+	background-color: rgb(146, 188, 255)
+}</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -122,10 +139,25 @@
              <iconset resource="icons.qrc">
               <normaloff>:/icons/icons/minus.svg</normaloff>:/icons/icons/minus.svg</iconset>
             </property>
+            <property name="iconSize">
+             <size>
+              <width>32</width>
+              <height>16</height>
+             </size>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="resize_button">
+            <property name="styleSheet">
+             <string notr="true">:hover {
+	background-color: rgb(48, 158, 255)
+}
+
+:pressed {
+	background-color: rgb(146, 188, 255)
+}</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -133,16 +165,37 @@
              <iconset>
               <normaloff>icons/restore_window.png</normaloff>icons/restore_window.png</iconset>
             </property>
+            <property name="iconSize">
+             <size>
+              <width>32</width>
+              <height>16</height>
+             </size>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="exit_button">
+            <property name="styleSheet">
+             <string notr="true">:hover {
+	background-color: rgb(255, 28, 77)
+}
+
+:pressed {
+	background-color: rgb(255, 179, 180);
+}</string>
+            </property>
             <property name="text">
              <string/>
             </property>
             <property name="icon">
              <iconset resource="icons.qrc">
               <normaloff>:/icons/icons/x.svg</normaloff>:/icons/icons/x.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>32</width>
+              <height>16</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -169,6 +222,11 @@
       <layout class="QHBoxLayout" name="horizontalLayout_8">
        <item alignment="Qt::AlignLeft">
         <widget class="QFrame" name="left_menu_fr">
+         <property name="styleSheet">
+          <string notr="true">:pressed {
+	background-color: rgb(172, 226, 255)
+}</string>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -332,9 +390,9 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QStackedWidget" name="stackedWidget">
+           <widget class="QStackedWidget" name="centralWidget">
             <property name="currentIndex">
-             <number>2</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="stats_page"/>
             <widget class="QWidget" name="lock_page"/>
@@ -359,6 +417,11 @@
     </item>
     <item alignment="Qt::AlignBottom">
      <widget class="QFrame" name="footer_frame">
+      <property name="styleSheet">
+       <string notr="true">:pressed {
+	background-color: rgb(172, 226, 255)
+}</string>
+      </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
