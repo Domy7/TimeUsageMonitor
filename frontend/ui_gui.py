@@ -11,7 +11,6 @@
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
-from vrijeme import *
 import json
 import sqlite3
 
@@ -52,10 +51,7 @@ class Ui_MainWindow(object):
     # retranslateUi
 
     def stisnutGumb(self):
-        vr = Vrijeme()
-        tekst = vr.process_time
-        cur.execute('''SELECT * FROM usage WHERE date=? AND app=?''',("2022-04-12", "Code"))
+        cur.execute('''SELECT * FROM usage WHERE date=? AND app=?''',("2022-04-24", "Code"))
         result = cur.fetchone()
-        tekst = result
         print(str(result))
        
