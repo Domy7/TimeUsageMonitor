@@ -1,2 +1,2 @@
 @echo off
-start pythonw .\backend\app_tracker.py
+start pythonw .\app_tracker.py
