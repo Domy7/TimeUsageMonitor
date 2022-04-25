@@ -97,7 +97,7 @@ class MainWindow(QMainWindow):
         chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
         chart.createDefaultAxes()
         chart.legend().setVisible(True)
-        chart.legend().setAlignment(QtCore.Qt.AlignBottom)
+        chart.legend().setAlignment(QtCore.Qt.AlignRight)
         background_color = QColor(230, 230, 230)		# postavlja boju pozadine charta da se podudara sa bojom GUI-a, ako je postavljena na 'light_blue.xml' (ln 34)
         chart.setBackgroundBrush(background_color)
 
