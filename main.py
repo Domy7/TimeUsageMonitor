@@ -6,7 +6,6 @@ from ui_gui import *
 from qt_material import *
 
 import resource_rc
-from app_tracker import Vrijeme
 
 ###
 # from PySide2 import *

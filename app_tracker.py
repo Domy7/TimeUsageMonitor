@@ -23,7 +23,7 @@ class Vrijeme():
 
     def petSekundi(self, oldtime):
         
-        if time.time() - oldtime > 5:
+        if time.time() - oldtime > 30:
             return True
         
         return False
@@ -44,18 +44,19 @@ class Vrijeme():
 
             while True:
                 current_app = psutil.Process(win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]).name().replace(".exe", "")
+
                 self.timestamp[current_app] = int(time.time())
                 time.sleep(1)
                 
-            #gledamo ako je trenutna apk prvi put otvorena stavi vrijeme koristenja na 0
+                #gledamo ako je trenutna apk prvi put otvorena stavi vrijeme koristenja na 0
                 if current_app not in self.process_time.keys():
                     self.process_time[current_app] = 0
                     
-            #odnosno ako nije povecaj vrijeme kao:
-            #ukupnoVr + trenutnoVr - vrijeme kada je otvorena apk zapisno u timestampu    
+                #odnosno ako nije povecaj vrijeme kao:
+                #ukupnoVr + trenutnoVr - vrijeme kada je otvorena apk zapisno u timestampu    
                 self.process_time[current_app] = self.process_time[current_app]+int(time.time())-self.timestamp[current_app]
                 
-            #svakih 5 sekundi spremi podatke u json file    
+                #svakih 5 sekundi spremi podatke u json file    
                 if self.petSekundi(pocetnoVrijeme):
                     self.save_to_database()
                     pocetnoVrijeme = time.time()
