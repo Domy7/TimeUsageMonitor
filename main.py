@@ -1,6 +1,5 @@
 import sys
 import os
-import threading
 
 from bs4 import Stylesheet
 from ui_gui import *
@@ -10,7 +9,7 @@ from PyQt5.QtCore import Qt
 from PyQt5 import QtGui
 
 import resource_rc
-from vrijeme import Vrijeme
+from app_tracker import Vrijeme
 from chart import Window
 
 ###
@@ -31,7 +30,7 @@ class MainWindow(QMainWindow):
 		self.create_percentage_bar_chart()
 ###
 		# load stylesheet, overrides fonts set in QTdesigner
-		apply_stylesheet(app, theme='light_blue.xml')	# dark cyan?
+		apply_stylesheet(app, theme='light_blue.xml')
 		
 		# removes window title bar
 		self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -70,24 +69,6 @@ class MainWindow(QMainWindow):
 		
 		# opens menu
 		#self.ui.menu_btn.clicked.connect(lambda: self.openMenu())
-
-		##########################################################################
-
-		###win = Window()
-
-		# self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
-		# lay = QtWidgets.QHBoxLayout(self.ui.chart_container)
-		# lay.setContentsMargins(0, 0, 0, 0)
-		# lay.addWidget(win.chartview)
-
-		# self.ui.chart_container.addWidget(win.chartview)
-		# self.ui.stats_body_fr.setStyleSheet(u"background-color: transparent")
-
-		##########################################################################
-
-		
-
-		##########################################################################
 
 ###
 	def create_percentage_bar_chart(self):

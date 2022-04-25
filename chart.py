@@ -34,7 +34,7 @@ class Window(QMainWindow):
 
 
 
-    def create_piechart(self):
+    def create_piechart(self):      # ne poziva se
         series = QPieSeries()
         
 
