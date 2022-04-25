@@ -14,7 +14,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(766, 567)
+        MainWindow.resize(866, 667)
         MainWindow.setStyleSheet("border: none")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -409,7 +409,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.addWidget(self.pushButton_2, 0, QtCore.Qt.AlignRight)
         self.horizontalLayout_5.addWidget(self.frame_3)
         self.size_grip = QtWidgets.QFrame(self.footer_frame)
-        self.size_grip.setMinimumSize(QtCore.QSize(10, 10))
+        self.size_grip.setMinimumSize(QtCore.QSize(0, 0))
         self.size_grip.setMaximumSize(QtCore.QSize(10, 10))
         self.size_grip.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.size_grip.setFrameShape(QtWidgets.QFrame.StyledPanel)
