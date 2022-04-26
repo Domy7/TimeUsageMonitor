@@ -1,75 +1,73 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5 import QtWidgets
-from PyQt5.QtChart import QChart, QChartView, QPieSeries, QPieSlice
-from PyQt5.QtGui import QPainter, QPen
-from PyQt5.QtCore import Qt
-import sqlite3
-from datetime import date
+#import sqlite3
+#from datetime import date
 
-from database import *
+#from database import *
 from ui_gui import *
 
-db = Database()
-db.createTable()
+from PySide2.QtGui import QPainter
+from PySide2.QtWidgets import *
+from PySide2.QtCharts import QtCharts
 
-today = str(date.today())
+#db = Database()
+#db.createTable()
 
-data = db.fetchAppsByDate(today)
+#today = str(date.today())
 
-class Window(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+#data = db.fetchAppsByDate(today)
+#
+class Chart():
 
-        # self.setWindowTitle("Time Usage By Application")
-        self.setGeometry(100,100, 1280,600)
+    def __init__(self, ui, data):
         self.data = data
-        # self.show()
+        self.ui = ui
+        #QMainWindow.__init__(self)
+        #self.ui = Ui_MainWindow()
+        #self.ui.setupUi(self)
+        self.chart = QtCharts.QChart()
+        self.chartview = QtCharts.QChartView(self.chart)
+        self.lay = QHBoxLayout(self.ui.chart_container)
 
-        # self.create_piechart()
+        self.create_pie_chart(data)
 
 
+  
+    def create_pie_chart(self, data):
 
-    def create_piechart(self):      # ne poziva se
-        series = QPieSeries()
+        self.data = data
+
+        #odabir vrste grafa
+        series = QtCharts.QPieSeries()
 
         for app in self.data:
             print(app)
             series.append(str(app[1]).title(), app[2])
-                
-        #adding slice
-        chart = QChart()
-        chart.legend().hide()
-        chart.addSeries(series)
-        chart.createDefaultAxes()
-        chart.setAnimationOptions(QChart.SeriesAnimations)
-        chart.setTitle("Time Usage By Application")
+
+        #glavna stvar nakon sto su dodani podaci kreiranje samog grafa
+        self.chart.addSeries(series)
+
+        #animacije, koje osi se vide sitnice
+        self.chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+        self.chart.createDefaultAxes()
+        self.chart.legend().setVisible(True)
+        self.chart.legend().setAlignment(QtCore.Qt.AlignRight)
+        self.chart.legend().setFont(QtGui.QFont("25"))
+        self.chart.setBackgroundBrush(QtGui.QBrush("transparent"))
+
+        #######################################
+
+        #iduce najvaznije prikaz samog grafa
+        self.chartview.setRenderHint(QPainter.Antialiasing)
         
-        chart.legend().setVisible(True)
-        chart.legend().setAlignment(Qt.AlignBottom)
+        #funkcija koja mi je davala najvise problema koliko kuzim odredivanje bordera
+        #prvi parametar sirina grafa po x- osi suzi sa vecim brojevima
+        #drugi parametar visina grafa po y- osi smanji sa vecim brojevima
+        #treci i cetvrti izgledaju kao da rade istu stvar kao 1. i 2. ne znam 
+        self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
+        
+        #self.chart_container.setContentsMargins(0, 0, 0, 0) ovako je originalno izgledala funkcija sto meni ne radi mora se dodat self.ui. prije
+        
+        #ovo valjda polozi onda graf na kraju na to mjesto
+        self.lay.setContentsMargins(0, 0, 0, 0)
+        self.lay.addWidget(self.chartview)
 
-        chartview = QChartView(chart)
-        chartview.setRenderHint(QPainter.Antialiasing)
-
-        self.setCentralWidget(chartview)
-
-        self.ui.gridLayout_2.addWidget(chartview, 0, 0, 0, 0)
-        # self.ui.stats_body_fr.setStyleSheet(u"background-color: transparent")
-
-        # series.clicked.connect(self.handle_clicked)
-
-        # self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
-        # lay = QtWidgets.QHBoxLayout(self.ui.chart_container)
-        # lay.setContentsMargins(0, 0, 0, 0)
-        # lay.addWidget(chartview)
-
-    # def handle_clicked(self, slice):
-    #     print(slice.label(), slice.value())
-
-
-
-# App = QApplication(sys.argv)
-# window = Window(result)
-# sys.exit(App.exec_())
