@@ -85,7 +85,7 @@ class MainWindow(QMainWindow):
     def refresh_pie_chart(self):
 
         self.data = db.fetchAppsByDate(today)
-        self.chart.create_pie_chart(data)
+        self.chart.create_pie_chart(self.data)
 
 
     # def refresh_pie_chart(self):

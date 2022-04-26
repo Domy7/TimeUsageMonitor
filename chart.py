@@ -24,6 +24,8 @@ class Chart():
         #QMainWindow.__init__(self)
         #self.ui = Ui_MainWindow()
         #self.ui.setupUi(self)
+        #odabir vrste grafa
+        self.series = QtCharts.QPieSeries()
         self.chart = QtCharts.QChart()
         self.chartview = QtCharts.QChartView(self.chart)
         self.lay = QHBoxLayout(self.ui.chart_container)
@@ -36,15 +38,15 @@ class Chart():
 
         self.data = data
 
-        #odabir vrste grafa
-        series = QtCharts.QPieSeries()
+        self.chart.removeSeries(self.series)
+        self.series = QtCharts.QPieSeries()
 
         for app in self.data:
             print(app)
-            series.append(str(app[1]).title(), app[2])
+            self.series.append(str(app[1]).title(), app[2])
 
         #glavna stvar nakon sto su dodani podaci kreiranje samog grafa
-        self.chart.addSeries(series)
+        self.chart.addSeries(self.series)
 
         #animacije, koje osi se vide sitnice
         self.chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
@@ -58,6 +60,7 @@ class Chart():
 
         #iduce najvaznije prikaz samog grafa
         self.chartview.setRenderHint(QPainter.Antialiasing)
+        # self.chartview.repaint()
         
         #funkcija koja mi je davala najvise problema koliko kuzim odredivanje bordera
         #prvi parametar sirina grafa po x- osi suzi sa vecim brojevima
@@ -70,4 +73,3 @@ class Chart():
         #ovo valjda polozi onda graf na kraju na to mjesto
         self.lay.setContentsMargins(0, 0, 0, 0)
         self.lay.addWidget(self.chartview)
-
