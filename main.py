@@ -13,9 +13,7 @@ from database import *
 
 ###
 # from PySide2 import *
-from PySide2.QtGui import QPainter
-from PySide2.QtWidgets import *
-from PySide2.QtCharts import QtCharts
+from chart import *
 ###
 
 from datetime import date
@@ -32,9 +30,9 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.data = data
+        self.chart = Chart(self.ui, data)
 ###
-        #poziv funkcije za kreiranje grafa
-        self.create_pie_chart()
+
 ###
         # load stylesheet, overrides fonts set in QTdesigner
         apply_stylesheet(app, theme='light_blue.xml')
@@ -71,7 +69,7 @@ class MainWindow(QMainWindow):
         self.ui.settings_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.settings_page))
         self.ui.data_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.data_page))
 
-        self.ui.refresh_chart_btn.clicked.connect(lambda: self.refresh_chart())
+        #self.ui.refresh_chart_btn.clicked.connect(lambda: self.refresh_chart())
 
         # self.ui.header_frame.mouseMoveEvent = self.moveWindow
         self.ui.header_center_fr.mouseMoveEvent = self.moveWindow
@@ -81,91 +79,9 @@ class MainWindow(QMainWindow):
 
 ###
 
-    def refresh_chart(self):
+    #def refresh_chart(self):
 
-        self.data = db.fetchAppsByDate(today)
-
-        #odabir vrste grafa
-        series = QtCharts.QPieSeries()
-
-        for app in self.data:
-            print(app)
-            series.append(str(app[1]).title(), app[2])
-
-        #glavna stvar nakon sto su dodani podaci kreiranje samog grafa
-        chart = QtCharts.QChart()
-        chart.addSeries(series)
-
-        #animacije, koje osi se vide sitnice
-        chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
-        chart.createDefaultAxes()
-        chart.legend().setVisible(True)
-        chart.legend().setAlignment(QtCore.Qt.AlignRight)
-        chart.legend().setFont(QtGui.QFont("25"))
-        chart.setBackgroundBrush(QtGui.QBrush("transparent"))
-
-        #######################################
-
-        #iduce najvaznije prikaz samog grafa 
-        chartview = QtCharts.QChartView(chart)
-        chartview.setRenderHint(QPainter.Antialiasing)
-
-        #funkcija koja mi je davala najvise problema koliko kuzim odredivanje bordera
-        #prvi parametar sirina grafa po x- osi suzi sa vecim brojevima
-        #drugi parametar visina grafa po y- osi smanji sa vecim brojevima
-        #treci i cetvrti izgledaju kao da rade istu stvar kao 1. i 2. ne znam 
-        
-        self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
-
-        #self.chart_container.setContentsMargins(0, 0, 0, 0) ovako je originalno izgledala funkcija sto meni ne radi mora se dodat self.ui. prije
-        
-        #ovo valjda polozi onda graf na kraju na to mjesto
-        lay = QHBoxLayout()
-        lay.setContentsMargins(0, 0, 0, 0)
-        lay.addWidget(chartview)
-
-    def create_pie_chart(self):
-
-
-        #odabir vrste grafa
-        series = QtCharts.QPieSeries()
-
-        for app in self.data:
-            print(app)
-            series.append(str(app[1]).title(), app[2])
-
-        #glavna stvar nakon sto su dodani podaci kreiranje samog grafa
-        chart = QtCharts.QChart()
-        chart.addSeries(series)
-
-        #animacije, koje osi se vide sitnice
-        chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
-        chart.createDefaultAxes()
-        chart.legend().setVisible(True)
-        chart.legend().setAlignment(QtCore.Qt.AlignRight)
-        chart.legend().setFont(QtGui.QFont("25"))
-        chart.setBackgroundBrush(QtGui.QBrush("transparent"))
-
-        #######################################
-
-        #iduce najvaznije prikaz samog grafa 
-        chartview = QtCharts.QChartView(chart)
-        chartview.setRenderHint(QPainter.Antialiasing)
-        
-        #funkcija koja mi je davala najvise problema koliko kuzim odredivanje bordera
-        #prvi parametar sirina grafa po x- osi suzi sa vecim brojevima
-        #drugi parametar visina grafa po y- osi smanji sa vecim brojevima
-        #treci i cetvrti izgledaju kao da rade istu stvar kao 1. i 2. ne znam 
-        
-        self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
-        
-        #self.chart_container.setContentsMargins(0, 0, 0, 0) ovako je originalno izgledala funkcija sto meni ne radi mora se dodat self.ui. prije
-        
-        #ovo valjda polozi onda graf na kraju na to mjesto
-        lay = QHBoxLayout(self.ui.chart_container)
-        lay.setContentsMargins(0, 0, 0, 0)
-        lay.addWidget(chartview)
-
+        #self.chart.create_pie_chart()
 
 ###
 
@@ -197,14 +113,14 @@ class MainWindow(QMainWindow):
 
     # opening (expanding) and closing the menu
     # def openMenu(self):
-    # 	width = self.ui.left_menu_fr.width()
-    # 	print(width)
-    # 	if width == 50:
-    # 		newWidth = 200
-    # 	else:
-    # 		newWidth = 50
+    #   width = self.ui.left_menu_fr.width()
+    #   print(width)
+    #   if width == 50:
+    #       newWidth = 200
+    #   else:
+    #       newWidth = 50
 
-    # 	self.ui.left_menu_fr.setMaximumWidth(newWidth)
+    #   self.ui.left_menu_fr.setMaximumWidth(newWidth)
 
 
 
