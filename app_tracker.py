@@ -4,18 +4,15 @@ import psutil
 import time
 import win32process
 import json
-import sqlite3
 from datetime import date
-
-con = sqlite3.connect('data.db', check_same_thread=False)
-cur = con.cursor()
-cur.execute('''CREATE TABLE IF NOT EXISTS usage
-                (date text, app text, time integer)''')
+from database import *
 
 class Vrijeme():
     process_time = {}
     timestamp = {}
     
+    db = Database()
+    db.createTable()
     today = str(date.today())
 
     def __init__(self):
@@ -30,14 +27,11 @@ class Vrijeme():
 
     def save_to_database(self):
         for open_app in self.process_time:
-            cur.execute('''SELECT * FROM usage WHERE date=? AND app=?''',(self.today, open_app))
-            result = cur.fetchone()
+            result = self.db.getAppInfo(self.today, open_app)
             if result:
-                cur.execute('''UPDATE usage SET time=? WHERE date=? AND app=?''',(result[2]+5, self.today, open_app))
+                self.db.updateAppUsage(result[2]+5, self.today, open_app)
             else:
-                cur.execute('''INSERT INTO usage(date,app,time) 
-                                VALUES (?,?,?)''',(self.today, open_app, self.process_time[open_app]))
-            con.commit()
+                self.db.insertApp(self.process_time[open_app], self.today, open_app)
 
     def glavno(self):
             pocetnoVrijeme = time.time()

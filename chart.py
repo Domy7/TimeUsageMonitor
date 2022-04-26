@@ -7,17 +7,15 @@ from PyQt5.QtCore import Qt
 import sqlite3
 from datetime import date
 
+from database import *
 from ui_gui import *
 
-con = sqlite3.connect('data.db', check_same_thread=False)
-cur = con.cursor()
+db = Database()
+db.createTable()
 
 today = str(date.today())
 
-cur.execute('''SELECT * FROM usage WHERE date=?''',("2022-04-13",))
-data = cur.fetchall()
-
-print(data)
+data = db.fetchAppsByDate(today)
 
 class Window(QMainWindow):
     def __init__(self):
@@ -36,19 +34,12 @@ class Window(QMainWindow):
 
     def create_piechart(self):      # ne poziva se
         series = QPieSeries()
-        
 
         for app in self.data:
             print(app)
             series.append(str(app[1]).title(), app[2])
                 
- 
         #adding slice
-        
-       
-
-
-
         chart = QChart()
         chart.legend().hide()
         chart.addSeries(series)

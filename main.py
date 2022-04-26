@@ -6,6 +6,9 @@ from ui_gui import *
 from qt_material import *
 
 import resource_rc
+from app_tracker import Vrijeme
+from chart import Window
+from database import *
 
 ###
 # from PySide2 import *
@@ -14,16 +17,12 @@ from PySide2.QtWidgets import *
 from PySide2.QtCharts import QtCharts
 ###
 
-import sqlite3
 from datetime import date
 
-con = sqlite3.connect('data.db', check_same_thread=False)
-cur = con.cursor()
-
 today = str(date.today())
-
-cur.execute('''SELECT * FROM usage WHERE date=?''',(today,))
-data = cur.fetchall()
+db = Database()
+db.createTable()
+data = db.fetchAppsByDate(today)
 
 class MainWindow(QMainWindow):
     
