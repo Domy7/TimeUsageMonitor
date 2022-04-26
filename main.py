@@ -13,9 +13,7 @@ from database import *
 
 ###
 # from PySide2 import *
-from PySide2.QtGui import QPainter
-from PySide2.QtWidgets import *
-from PySide2.QtCharts import QtCharts
+from chart import *
 ###
 
 from datetime import date
@@ -31,11 +29,13 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
         self.data = db.fetchAppsByDate(today)
         self.chart = Chart(self.ui, self.data)
 ###
         #poziv funkcije za kreiranje grafa
         # self.draw_pie_chart()
+
 ###
         # load stylesheet, overrides fonts set in QTdesigner
         apply_stylesheet(app, theme='light_blue.xml')
@@ -72,6 +72,7 @@ class MainWindow(QMainWindow):
         self.ui.settings_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.settings_page))
         self.ui.data_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.data_page))
 
+
         self.ui.refresh_chart_btn.clicked.connect(lambda: self.refresh_pie_chart())
 
         # self.ui.header_frame.mouseMoveEvent = self.moveWindow
@@ -81,6 +82,7 @@ class MainWindow(QMainWindow):
         #self.ui.menu_btn.clicked.connect(lambda: self.openMenu())
 
 ###
+
 
     def refresh_pie_chart(self):
 
@@ -145,6 +147,8 @@ class MainWindow(QMainWindow):
     #     lay.addWidget(chartview)
 
 
+        #self.chart.create_pie_chart()
+
 ###
 
     def restore_or_maximize_window(self):
@@ -175,14 +179,14 @@ class MainWindow(QMainWindow):
 
     # opening (expanding) and closing the menu
     # def openMenu(self):
-    # 	width = self.ui.left_menu_fr.width()
-    # 	print(width)
-    # 	if width == 50:
-    # 		newWidth = 200
-    # 	else:
-    # 		newWidth = 50
+    #   width = self.ui.left_menu_fr.width()
+    #   print(width)
+    #   if width == 50:
+    #       newWidth = 200
+    #   else:
+    #       newWidth = 50
 
-    # 	self.ui.left_menu_fr.setMaximumWidth(newWidth)
+    #   self.ui.left_menu_fr.setMaximumWidth(newWidth)
 
 
 

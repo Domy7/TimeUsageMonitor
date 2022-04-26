@@ -1,13 +1,16 @@
 import sys
+
 #import sqlite3
 #from datetime import date
 
 #from database import *
+
 from ui_gui import *
 
 from PySide2.QtGui import QPainter
 from PySide2.QtWidgets import *
 from PySide2.QtCharts import QtCharts
+
 
 #db = Database()
 #db.createTable()
@@ -16,11 +19,13 @@ from PySide2.QtCharts import QtCharts
 
 #data = db.fetchAppsByDate(today)
 #
+
 class Chart():
 
     def __init__(self, ui, data):
         self.data = data
         self.ui = ui
+
         #QMainWindow.__init__(self)
         #self.ui = Ui_MainWindow()
         #self.ui.setupUi(self)
@@ -61,10 +66,12 @@ class Chart():
         #iduce najvaznije prikaz samog grafa
         self.chartview.setRenderHint(QPainter.Antialiasing)
         # self.chartview.repaint()
+
         
         #funkcija koja mi je davala najvise problema koliko kuzim odredivanje bordera
         #prvi parametar sirina grafa po x- osi suzi sa vecim brojevima
         #drugi parametar visina grafa po y- osi smanji sa vecim brojevima
+
         #treci i cetvrti izgledaju kao da rade istu stvar kao 1. i 2. ne znam 
         self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
         
@@ -73,3 +80,4 @@ class Chart():
         #ovo valjda polozi onda graf na kraju na to mjesto
         self.lay.setContentsMargins(0, 0, 0, 0)
         self.lay.addWidget(self.chartview)
+
