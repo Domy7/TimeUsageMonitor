@@ -1,3 +1,4 @@
+from sqlite3 import Timestamp
 from win32gui import GetForegroundWindow
 import os
 import psutil
