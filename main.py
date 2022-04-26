@@ -8,7 +8,7 @@ from qt_material import *
 
 import resource_rc
 from app_tracker import Vrijeme
-# from chart import Window
+from chart import *
 from database import *
 
 ###
@@ -21,17 +21,20 @@ from datetime import date
 today = str(date.today())
 db = Database()
 db.createTable()
-data = db.fetchAppsByDate(today)
+# data = db.fetchAppsByDate(today)
 
 class MainWindow(QMainWindow):
     
-    def __init__(self, data, parent = None):
+    def __init__(self, parent = None):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.data = data
-        self.chart = Chart(self.ui, data)
+
+        self.data = db.fetchAppsByDate(today)
+        self.chart = Chart(self.ui, self.data)
 ###
+        #poziv funkcije za kreiranje grafa
+        # self.draw_pie_chart()
 
 ###
         # load stylesheet, overrides fonts set in QTdesigner
@@ -69,7 +72,8 @@ class MainWindow(QMainWindow):
         self.ui.settings_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.settings_page))
         self.ui.data_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.data_page))
 
-        #self.ui.refresh_chart_btn.clicked.connect(lambda: self.refresh_chart())
+
+        self.ui.refresh_chart_btn.clicked.connect(lambda: self.refresh_pie_chart())
 
         # self.ui.header_frame.mouseMoveEvent = self.moveWindow
         self.ui.header_center_fr.mouseMoveEvent = self.moveWindow
@@ -79,7 +83,69 @@ class MainWindow(QMainWindow):
 
 ###
 
-    #def refresh_chart(self):
+
+    def refresh_pie_chart(self):
+
+        self.data = db.fetchAppsByDate(today)
+        self.chart.create_pie_chart(self.data)
+
+
+    # def refresh_pie_chart(self):
+
+    #     chartview = self.create_pie_chart()
+        
+    #     #ovo valjda polozi onda graf na kraju na to mjesto
+    #     lay = QHBoxLayout()
+    #     lay.setContentsMargins(0, 0, 0, 0)
+    #     lay.addWidget(chartview)
+
+    # def create_pie_chart(self):
+
+    #     self.data = db.fetchAppsByDate(today)
+
+    #     #odabir vrste grafa
+    #     series = QtCharts.QPieSeries()
+
+    #     for app in self.data:
+    #         print(app)
+    #         series.append(str(app[1]).title(), app[2])
+
+    #     #glavna stvar nakon sto su dodani podaci kreiranje samog grafa
+    #     chart = QtCharts.QChart()
+    #     chart.addSeries(series)
+
+    #     #animacije, koje osi se vide sitnice
+    #     chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+    #     chart.createDefaultAxes()
+    #     chart.legend().setVisible(True)
+    #     chart.legend().setAlignment(QtCore.Qt.AlignRight)
+    #     chart.legend().setFont(QtGui.QFont("25"))
+    #     chart.setBackgroundBrush(QtGui.QBrush("transparent"))
+
+    #     #######################################
+
+    #     #iduce najvaznije prikaz samog grafa 
+    #     chartview = QtCharts.QChartView(chart)
+    #     chartview.setRenderHint(QPainter.Antialiasing)
+        
+    #     #funkcija koja mi je davala najvise problema koliko kuzim odredivanje bordera
+    #     #prvi parametar sirina grafa po x- osi suzi sa vecim brojevima
+    #     #drugi parametar visina grafa po y- osi smanji sa vecim brojevima
+    #     #treci i cetvrti izgledaju kao da rade istu stvar kao 1. i 2. ne znam 
+        
+    #     self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
+        
+    #     #self.chart_container.setContentsMargins(0, 0, 0, 0) ovako je originalno izgledala funkcija sto meni ne radi mora se dodat self.ui. prije
+    #     return chartview
+        
+    # def draw_pie_chart(self):
+
+    #     chartview = self.create_pie_chart()
+    #     #ovo valjda polozi onda graf na kraju na to mjesto
+    #     lay = QHBoxLayout(self.ui.chart_container)
+    #     lay.setContentsMargins(0, 0, 0, 0)
+    #     lay.addWidget(chartview)
+
 
         #self.chart.create_pie_chart()
 
@@ -127,7 +193,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
 
-    
+    data = db.fetchAppsByDate(today)
 
     app = QApplication(sys.argv)
     window = MainWindow(data)
