@@ -35,11 +35,11 @@ class Chart():
         self.chartview = QtCharts.QChartView(self.chart)
         self.lay = QHBoxLayout(self.ui.chart_container)
 
-        self.create_pie_chart(data)
+        self.createPieChart(data)
 
 
   
-    def create_pie_chart(self, data):
+    def createPieChart(self, data):
 
         self.data = data
 

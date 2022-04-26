@@ -7,7 +7,6 @@ from ui_gui import *
 from qt_material import *
 
 import resource_rc
-from app_tracker import Vrijeme
 from chart import *
 from database import *
 
@@ -73,7 +72,7 @@ class MainWindow(QMainWindow):
         self.ui.data_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.data_page))
 
 
-        self.ui.refresh_chart_btn.clicked.connect(lambda: self.refresh_pie_chart())
+        self.ui.refresh_chart_btn.clicked.connect(lambda: self.refreshPieChart())
 
         # self.ui.header_frame.mouseMoveEvent = self.moveWindow
         self.ui.header_center_fr.mouseMoveEvent = self.moveWindow
@@ -84,13 +83,13 @@ class MainWindow(QMainWindow):
 ###
 
 
-    def refresh_pie_chart(self):
+    def refreshPieChart(self):
 
         self.data = db.fetchAppsByDate(today)
-        self.chart.create_pie_chart(self.data)
+        self.chart.createPieChart(self.data)
 
 
-    # def refresh_pie_chart(self):
+    # def refreshPieChart(self):
 
     #     chartview = self.create_pie_chart()
         
