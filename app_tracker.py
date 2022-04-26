@@ -20,7 +20,7 @@ class Vrijeme():
 
     def petSekundi(self, oldtime):
         
-        if time.time() - oldtime > 30:
+        if time.time() - oldtime > 5:
             return True
         
         return False
