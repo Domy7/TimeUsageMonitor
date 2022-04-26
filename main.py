@@ -54,7 +54,7 @@ class MainWindow(QMainWindow):
 
         self.ui.minimize_button.clicked.connect(lambda: self.showMinimized())
         self.ui.exit_button.clicked.connect(lambda: self.close())
-        self.ui.resize_button.clicked.connect(lambda: self.restore_or_maximize_window())
+        self.ui.resize_button.clicked.connect(lambda: self.restoreOrMaximizeWindow())
 
         self.ui.stats_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.stats_page))
         self.ui.lock_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.lock_page))
@@ -77,7 +77,7 @@ class MainWindow(QMainWindow):
         self.chart.createPieChart(self.data)
 
 
-    def restore_or_maximize_window(self):
+    def restoreOrMaximizeWindow(self):
         if self.isMaximized():
             self.showNormal()
             self.ui.resize_button.setIcon(QtGui.QIcon(u":/icons/icons/maximize.svg"))
