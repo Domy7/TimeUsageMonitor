@@ -1,3 +1,4 @@
+from sqlite3 import Timestamp
 from win32gui import GetForegroundWindow
 import os
 import psutil
@@ -28,15 +29,18 @@ class Vrijeme():
     def save_to_database(self):
         for open_app in self.process_time:
             result = self.db.getAppInfo(self.today, open_app)
+
             if result:
-                self.db.updateAppUsage(result[2]+5, self.today, open_app)
+                self.db.updateAppUsage(result[2] + self.process_time[open_app], self.today, open_app)
             else:
                 self.db.insertApp(self.process_time[open_app], self.today, open_app)
+
 
     def glavno(self):
             pocetnoVrijeme = time.time()
 
             while True:
+                
                 current_app = psutil.Process(win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]).name().replace(".exe", "")
 
                 self.timestamp[current_app] = int(time.time())
@@ -54,6 +58,7 @@ class Vrijeme():
                 if self.petSekundi(pocetnoVrijeme):
                     self.save_to_database()
                     pocetnoVrijeme = time.time()
+                    self.process_time = {}
                 
                 print(self.process_time)
 
@@ -63,8 +68,3 @@ if __name__ == "__main__":
     file.close()
     
     Vrijeme()
-
-
-
-
-
