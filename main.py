@@ -10,17 +10,11 @@ import resource_rc
 from chart import *
 from database import *
 
-###
-# from PySide2 import *
-from chart import *
-###
-
 from datetime import date
 
 today = str(date.today())
 db = Database()
 db.createTable()
-# data = db.fetchAppsByDate(today)
 
 class MainWindow(QMainWindow):
     
@@ -31,11 +25,7 @@ class MainWindow(QMainWindow):
 
         self.data = db.fetchAppsByDate(today)
         self.chart = Chart(self.ui, self.data)
-###
-        #poziv funkcije za kreiranje grafa
-        # self.draw_pie_chart()
 
-###
         # load stylesheet, overrides fonts set in QTdesigner
         apply_stylesheet(app, theme='light_blue.xml')
         
@@ -77,10 +67,8 @@ class MainWindow(QMainWindow):
         # self.ui.header_frame.mouseMoveEvent = self.moveWindow
         self.ui.header_center_fr.mouseMoveEvent = self.moveWindow
         
-        # opens menu
+        # TODO: opens menu
         #self.ui.menu_btn.clicked.connect(lambda: self.openMenu())
-
-###
 
 
     def refreshPieChart(self):
@@ -88,67 +76,6 @@ class MainWindow(QMainWindow):
         self.data = db.fetchAppsByDate(today)
         self.chart.createPieChart(self.data)
 
-
-    # def refreshPieChart(self):
-
-    #     chartview = self.create_pie_chart()
-        
-    #     #ovo valjda polozi onda graf na kraju na to mjesto
-    #     lay = QHBoxLayout()
-    #     lay.setContentsMargins(0, 0, 0, 0)
-    #     lay.addWidget(chartview)
-
-    # def create_pie_chart(self):
-
-    #     self.data = db.fetchAppsByDate(today)
-
-    #     #odabir vrste grafa
-    #     series = QtCharts.QPieSeries()
-
-    #     for app in self.data:
-    #         print(app)
-    #         series.append(str(app[1]).title(), app[2])
-
-    #     #glavna stvar nakon sto su dodani podaci kreiranje samog grafa
-    #     chart = QtCharts.QChart()
-    #     chart.addSeries(series)
-
-    #     #animacije, koje osi se vide sitnice
-    #     chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
-    #     chart.createDefaultAxes()
-    #     chart.legend().setVisible(True)
-    #     chart.legend().setAlignment(QtCore.Qt.AlignRight)
-    #     chart.legend().setFont(QtGui.QFont("25"))
-    #     chart.setBackgroundBrush(QtGui.QBrush("transparent"))
-
-    #     #######################################
-
-    #     #iduce najvaznije prikaz samog grafa 
-    #     chartview = QtCharts.QChartView(chart)
-    #     chartview.setRenderHint(QPainter.Antialiasing)
-        
-    #     #funkcija koja mi je davala najvise problema koliko kuzim odredivanje bordera
-    #     #prvi parametar sirina grafa po x- osi suzi sa vecim brojevima
-    #     #drugi parametar visina grafa po y- osi smanji sa vecim brojevima
-    #     #treci i cetvrti izgledaju kao da rade istu stvar kao 1. i 2. ne znam 
-        
-    #     self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
-        
-    #     #self.chart_container.setContentsMargins(0, 0, 0, 0) ovako je originalno izgledala funkcija sto meni ne radi mora se dodat self.ui. prije
-    #     return chartview
-        
-    # def draw_pie_chart(self):
-
-    #     chartview = self.create_pie_chart()
-    #     #ovo valjda polozi onda graf na kraju na to mjesto
-    #     lay = QHBoxLayout(self.ui.chart_container)
-    #     lay.setContentsMargins(0, 0, 0, 0)
-    #     lay.addWidget(chartview)
-
-
-        #self.chart.create_pie_chart()
-
-###
 
     def restore_or_maximize_window(self):
         if self.isMaximized():
@@ -175,7 +102,7 @@ class MainWindow(QMainWindow):
         # current pos of the mouse
         self.clickPosition = event.globalPos()
 
-
+    # TODO:
     # opening (expanding) and closing the menu
     # def openMenu(self):
     #   width = self.ui.left_menu_fr.width()

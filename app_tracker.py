@@ -35,6 +35,7 @@ class appTracker():
             if time.time() - initialTime > 5:
                 self.saveToDatabase()
                 initialTime = time.time()
+                self.processTime = {}
             
             print(self.processTime)       
 
@@ -43,12 +44,12 @@ class appTracker():
         for openApp in self.processTime:
             result = self.db.getAppInfo(self.today, openApp)
             if result:
-                self.db.updateAppUsage(result[2]+5, self.today, openApp)
+                self.db.updateAppUsage(result[2] + self.processTime[openApp], self.today, openApp)
             else:
                 self.db.insertApp(self.processTime[openApp], self.today, openApp)
 
 if __name__ == "__main__":
-    
+
     file = open("process.log", "w")
     file.write("last PID: " + str(os.getpid()))
     file.close()
