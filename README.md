@@ -8,5 +8,6 @@ Služi za poboljšanje produktivnosti i informiranje o načinu i količini kori�
 - Povijest korištenja
 - Limit korištenja
 
-
 ![image](https://user-images.githubusercontent.com/76628050/165506031-cd966fb3-17e0-4024-a57f-4c87c0227ab0.png)
+
+
