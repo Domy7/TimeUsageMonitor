@@ -22,7 +22,8 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
+        
+        
         self.data = db.fetchAppsByDate(today)
         self.chart = Chart(self.ui, self.data)
 
@@ -60,7 +61,6 @@ class MainWindow(QMainWindow):
         self.ui.lock_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.lock_page))
         self.ui.settings_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.settings_page))
         self.ui.data_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.data_page))
-
 
         self.ui.refresh_chart_btn.clicked.connect(lambda: self.refreshPieChart())
 
