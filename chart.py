@@ -19,8 +19,16 @@ class Chart():
 
         self.createPieChart(data)
 
+    def secondsToText(self, secs):
+        days = secs//86400
+        hours = (secs - days*86400)//3600
+        minutes = (secs - days*86400 - hours*3600)//60
+        seconds = secs - days*86400 - hours*3600 - minutes*60
+        result = ("{} h, ".format(hours) if hours else "") + \
+        ("{0:.0f} min, ".format(minutes) if minutes else "") + \
+        ("{0:.0f} s ".format(seconds) if seconds else "")
+        return result
 
-  
     def createPieChart(self, data):
 
         self.data = data
@@ -29,7 +37,7 @@ class Chart():
         self.series = QtCharts.QPieSeries()
 
         for app in self.data:
-            print(app)
+            #print(app)
             self.series.append(str(app[1]).title(), app[2])
 
         #glavna stvar nakon sto su dodani podaci kreiranje samog grafa
@@ -43,6 +51,11 @@ class Chart():
         self.chart.legend().setFont(QtGui.QFont("25"))
         self.chart.setBackgroundBrush(QtGui.QBrush("transparent"))
 
+        self.series.setLabelsVisible()
+        for slice in self.series.slices():
+            slice.setLabelVisible()
+            oldLabel = slice.label()
+            slice.setLabel(oldLabel + " - " + self.secondsToText(slice.value()))
 
         #iduce najvaznije prikaz samog grafa
         self.chartview.setRenderHint(QPainter.Antialiasing)
@@ -52,9 +65,8 @@ class Chart():
         #drugi parametar visina grafa po y- osi smanji sa vecim brojevima
         #treci i cetvrti izgledaju kao da rade istu stvar kao 1. i 2. ne znam 
         self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
-        
-        #self.chart_container.setContentsMargins(0, 0, 0, 0) ovako je originalno izgledala funkcija sto meni ne radi mora se dodat self.ui. prije
-        
+                
         #ovo valjda polozi onda graf na kraju na to mjesto
         self.lay.setContentsMargins(0, 0, 0, 0)
         self.lay.addWidget(self.chartview)
+        
