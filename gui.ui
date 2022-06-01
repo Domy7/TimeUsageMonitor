@@ -428,7 +428,7 @@
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_10">
                  <item>
-                  <widget class="QLabel" name="label_4">
+                  <widget class="QLabel" name="stats_icon">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
                      <horstretch>0</horstretch>
@@ -440,6 +440,9 @@
                      <width>32</width>
                      <height>32</height>
                     </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true"/>
                    </property>
                    <property name="text">
                     <string/>
@@ -465,10 +468,16 @@
                    </property>
                    <property name="font">
                     <font>
-                     <pointsize>12</pointsize>
+                     <family>MS Shell Dlg 2</family>
+                     <pointsize>14</pointsize>
                      <weight>75</weight>
+                     <italic>false</italic>
                      <bold>true</bold>
                     </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;
+font-weight: bold;</string>
                    </property>
                    <property name="text">
                     <string>Statistics</string>
@@ -566,7 +575,7 @@
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_13">
                  <item>
-                  <widget class="QLabel" name="label_3">
+                  <widget class="QLabel" name="lock_icon">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -597,10 +606,16 @@
                    </property>
                    <property name="font">
                     <font>
-                     <pointsize>12</pointsize>
+                     <family>MS Shell Dlg 2</family>
+                     <pointsize>14</pointsize>
                      <weight>75</weight>
+                     <italic>false</italic>
                      <bold>true</bold>
                     </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;
+font-weight: bold;</string>
                    </property>
                    <property name="text">
                     <string>Limits</string>
@@ -728,7 +743,7 @@
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_15">
                  <item>
-                  <widget class="QLabel" name="label_5">
+                  <widget class="QLabel" name="settings_icon">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
                      <horstretch>0</horstretch>
@@ -759,10 +774,16 @@
                    </property>
                    <property name="font">
                     <font>
-                     <pointsize>12</pointsize>
+                     <family>MS Shell Dlg 2</family>
+                     <pointsize>14</pointsize>
                      <weight>75</weight>
+                     <italic>false</italic>
                      <bold>true</bold>
                     </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;
+font-weight: bold;</string>
                    </property>
                    <property name="text">
                     <string>Settings</string>
@@ -805,7 +826,7 @@
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_16">
                  <item>
-                  <widget class="QLabel" name="label_6">
+                  <widget class="QLabel" name="data_icon">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
                      <horstretch>0</horstretch>
@@ -830,10 +851,16 @@
                   <widget class="QLabel" name="data_title_lbl">
                    <property name="font">
                     <font>
-                     <pointsize>12</pointsize>
+                     <family>MS Shell Dlg 2</family>
+                     <pointsize>14</pointsize>
                      <weight>75</weight>
+                     <italic>false</italic>
                      <bold>true</bold>
                     </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;
+font-weight: bold;</string>
                    </property>
                    <property name="text">
                     <string>Data</string>

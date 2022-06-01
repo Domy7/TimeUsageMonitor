@@ -6,7 +6,7 @@ from bs4 import Stylesheet
 from ui_gui import *
 from qt_material import *
 
-import resource_rc
+import icons_rc
 from chart import *
 from database import *
 
