@@ -414,11 +414,11 @@
           <item>
            <widget class="QStackedWidget" name="centralWidget">
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="stats_page">
              <layout class="QVBoxLayout" name="verticalLayout_3">
-              <item alignment="Qt::AlignTop">
+              <item alignment="Qt::AlignHCenter|Qt::AlignTop">
                <widget class="QFrame" name="stats_title_fr">
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -428,12 +428,40 @@
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_10">
                  <item>
-                  <widget class="QLabel" name="stats_title_lbl">
+                  <widget class="QLabel" name="label_4">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>32</width>
+                     <height>32</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="icons.qrc">:/icons/icons/bar-chart-2.svg</pixmap>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="stats_title_lbl">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>650</width>
+                     <height>16777215</height>
+                    </size>
                    </property>
                    <property name="font">
                     <font>
@@ -447,28 +475,6 @@
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                 <item alignment="Qt::AlignRight">
-                  <widget class="QPushButton" name="refresh_chart_btn">
-                   <property name="styleSheet">
-                    <string notr="true">:pressed {
-	background-color: rgb(172, 226, 255)
-}</string>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="icons.qrc">
-                     <normaloff>:/icons/icons/refresh-cw.svg</normaloff>:/icons/icons/refresh-cw.svg</iconset>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
                    </property>
                   </widget>
                  </item>
@@ -489,14 +495,48 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_11">
+                <layout class="QVBoxLayout" name="verticalLayout_5">
+                 <item alignment="Qt::AlignRight|Qt::AlignTop">
+                  <widget class="QFrame" name="frame_2">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_11">
+                    <item>
+                     <widget class="QPushButton" name="refresh_chart_btn">
+                      <property name="styleSheet">
+                       <string notr="true">:pressed {
+	background-color: rgb(172, 226, 255)
+}</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="icons.qrc">
+                        <normaloff>:/icons/icons/refresh-cw.svg</normaloff>:/icons/icons/refresh-cw.svg</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
                  <item>
                   <widget class="QWidget" name="chart_container" native="true">
                    <property name="enabled">
                     <bool>true</bool>
                    </property>
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
@@ -516,7 +556,7 @@
             </widget>
             <widget class="QWidget" name="lock_page">
              <layout class="QVBoxLayout" name="verticalLayout_4">
-              <item alignment="Qt::AlignTop">
+              <item alignment="Qt::AlignHCenter|Qt::AlignTop">
                <widget class="QFrame" name="lock_title_fr">
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -524,9 +564,37 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <layout class="QVBoxLayout" name="verticalLayout_5">
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <item>
+                  <widget class="QLabel" name="label_3">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>32</width>
+                     <height>32</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="icons.qrc">:/icons/icons/key.svg</pixmap>
+                   </property>
+                  </widget>
+                 </item>
                  <item>
                   <widget class="QLabel" name="lock_title_lbl">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="font">
                     <font>
                      <pointsize>12</pointsize>
@@ -650,7 +718,7 @@
             </widget>
             <widget class="QWidget" name="settings_page">
              <layout class="QVBoxLayout" name="verticalLayout_6">
-              <item alignment="Qt::AlignTop">
+              <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
                <widget class="QFrame" name="settings_title_fr">
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -658,9 +726,37 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <layout class="QVBoxLayout" name="verticalLayout_7">
+                <layout class="QHBoxLayout" name="horizontalLayout_15">
+                 <item>
+                  <widget class="QLabel" name="label_5">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>32</width>
+                     <height>32</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="icons.qrc">:/icons/icons/settings.svg</pixmap>
+                   </property>
+                  </widget>
+                 </item>
                  <item>
                   <widget class="QLabel" name="settings_title_lbl">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="font">
                     <font>
                      <pointsize>12</pointsize>
@@ -699,7 +795,7 @@
             </widget>
             <widget class="QWidget" name="data_page">
              <layout class="QVBoxLayout" name="verticalLayout_8">
-              <item alignment="Qt::AlignTop">
+              <item alignment="Qt::AlignHCenter|Qt::AlignTop">
                <widget class="QFrame" name="data_title_fr">
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -707,7 +803,29 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <layout class="QVBoxLayout" name="verticalLayout_9">
+                <layout class="QHBoxLayout" name="horizontalLayout_16">
+                 <item>
+                  <widget class="QLabel" name="label_6">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>32</width>
+                     <height>32</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="icons.qrc">:/icons/icons/database.svg</pixmap>
+                   </property>
+                  </widget>
+                 </item>
                  <item>
                   <widget class="QLabel" name="data_title_lbl">
                    <property name="font">
