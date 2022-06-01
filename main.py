@@ -22,6 +22,16 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        ###
+
+        # TODO: How to add apps automatically?
+        # adding apps manualy:
+        self.ui.choose_app.addItem("Chrome")
+        self.ui.choose_app.addItem("Brave")
+        #self.ui.choose_app.addItem("ChromeChromeChromeChromeChromeChromeChromeChromeChromeChrome")     # test
+
+        ###
         
         
         self.data = db.fetchAppsByDate(today)
