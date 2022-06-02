@@ -25,11 +25,17 @@ class MainWindow(QMainWindow):
 
         ###
 
+        self.appsLimit = []
+        self.timeLimit = []
+
         # TODO: How to add apps automatically?
         # adding apps manualy:
         self.ui.choose_app.addItem("Chrome")
         self.ui.choose_app.addItem("Brave")
         #self.ui.choose_app.addItem("ChromeChromeChromeChromeChromeChromeChromeChromeChromeChrome")     # test
+
+        self.ui.choose_time_h.setMaximum(23)
+        self.ui.choose_time_m.setMaximum(59)
 
         ###
         
@@ -79,6 +85,39 @@ class MainWindow(QMainWindow):
         
         # TODO: opens menu
         #self.ui.menu_btn.clicked.connect(lambda: self.openMenu())
+
+        self.ui.submit_limit.clicked.connect(lambda: self.submitLimit())
+
+
+    def submitLimit(self):
+
+        tmpApp = ""
+        tmpTime = 0
+        
+        tmpApp = self.ui.choose_app.currentText()                                           # reads chosen app
+        tmpTime = self.ui.choose_time_h.value() * 60 + self.ui.choose_time_m.value()        # reads chosen time in minutes
+        # print(tmpApp)
+        # print(tmpTime)
+
+        if (not self.appsLimit or not tmpApp in self.appsLimit) and tmpTime:        # checks if array is empty and if specified app already exists in the array
+            self.addLimit(tmpApp, tmpTime)
+        elif tmpApp in self.appsLimit:          # if app (exists and) already has a limit (changes it)
+            i = self.appsLimit.index(tmpApp)    # get index of the selected app
+            self.timeLimit[i] = tmpTime         # change the time for that index
+
+            if not tmpTime:                     # if chosen time is 0, deletes the limit
+                self.appsLimit.pop(i)
+                self.timeLimit.pop(i)
+                                                # will not add a limit if app doesn't already have one and the set time is 0
+        print("\n")
+
+        for app in self.appsLimit:
+            print(app, self.timeLimit[self.appsLimit.index(app)])
+
+
+    def addLimit(self, tmpApp, tmpTime):    # appends app and time to the arrays
+        self.appsLimit.append(tmpApp)
+        self.timeLimit.append(tmpTime)
 
 
     def refreshPieChart(self):

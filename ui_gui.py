@@ -387,6 +387,14 @@ class Ui_MainWindow(object):
         self.choose_time_h.setSizePolicy(sizePolicy)
         self.choose_time_h.setObjectName("choose_time_h")
         self.horizontalLayout_12.addWidget(self.choose_time_h)
+        self.label_3 = QtWidgets.QLabel(self.new_limit_fr)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy)
+        self.label_3.setObjectName("label_3")
+        self.horizontalLayout_12.addWidget(self.label_3)
         self.choose_time_m = QtWidgets.QSpinBox(self.new_limit_fr)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -395,6 +403,26 @@ class Ui_MainWindow(object):
         self.choose_time_m.setSizePolicy(sizePolicy)
         self.choose_time_m.setObjectName("choose_time_m")
         self.horizontalLayout_12.addWidget(self.choose_time_m)
+        self.label_4 = QtWidgets.QLabel(self.new_limit_fr)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy)
+        self.label_4.setObjectName("label_4")
+        self.horizontalLayout_12.addWidget(self.label_4)
+        self.submit_limit = QtWidgets.QPushButton(self.new_limit_fr)
+        self.submit_limit.setMinimumSize(QtCore.QSize(40, 0))
+        self.submit_limit.setStyleSheet(":hover {\n"
+"    color: rgb(246, 238, 255);\n"
+"    background-color: rgb(48, 158, 255);\n"
+"}\n"
+"\n"
+":pressed {\n"
+"    background-color: rgb(146, 188, 255);\n"
+"}")
+        self.submit_limit.setObjectName("submit_limit")
+        self.horizontalLayout_12.addWidget(self.submit_limit, 0, QtCore.Qt.AlignRight)
         self.verticalLayout_10.addWidget(self.new_limit_fr, 0, QtCore.Qt.AlignTop)
         self.existing_limits_fr = QtWidgets.QFrame(self.lock_body_fr)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
@@ -573,7 +601,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.centralWidget.setCurrentIndex(0)
+        self.centralWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -589,8 +617,11 @@ class Ui_MainWindow(object):
         self.lock_title_lbl.setText(_translate("MainWindow", "Limits"))
         self.label.setText(_translate("MainWindow", "Choose an app:"))
         self.label_2.setText(_translate("MainWindow", "Set the time:"))
+        self.label_3.setText(_translate("MainWindow", "h"))
+        self.label_4.setText(_translate("MainWindow", "m"))
+        self.submit_limit.setText(_translate("MainWindow", "Done"))
         self.settings_title_lbl.setText(_translate("MainWindow", "Settings"))
         self.data_title_lbl.setText(_translate("MainWindow", "Data"))
         self.version_lbl.setText(_translate("MainWindow", "Version 1.0"))
         self.question_btn.setText(_translate("MainWindow", "?"))
-
+import icons_rc
