@@ -1,14 +1,15 @@
 import sys
-import os
+# import os
 from venv import create
 
-from bs4 import Stylesheet
+# from bs4 import Stylesheet
 from ui_gui import *
 from qt_material import *
 
-import icons_rc
+# import icons_rc
 from chart import *
 from database import *
+from PySide2.QtGui import *
 
 from datetime import date
 
@@ -30,9 +31,12 @@ class MainWindow(QMainWindow):
 
         # TODO: How to add apps automatically?
         # adding apps manualy:
-        self.ui.choose_app.addItem("Chrome")
         self.ui.choose_app.addItem("Brave")
-        #self.ui.choose_app.addItem("ChromeChromeChromeChromeChromeChromeChromeChromeChromeChrome")     # test
+        self.ui.choose_app.addItem("cmd")
+        self.ui.choose_app.addItem("Code")
+        self.ui.choose_app.addItem("designer")
+        self.ui.choose_app.addItem("GitHubDesktop")
+        self.ui.choose_app.addItem("Taskmgr")
 
         self.ui.choose_time_h.setMaximum(23)
         self.ui.choose_time_m.setMaximum(59)
@@ -109,10 +113,20 @@ class MainWindow(QMainWindow):
                 self.appsLimit.pop(i)
                 self.timeLimit.pop(i)
                                                 # will not add a limit if app doesn't already have one and the set time is 0
-        print("\n")
+        ### testing:
+        # print("\n")
+        self.item = []
 
         for app in self.appsLimit:
-            print(app, self.timeLimit[self.appsLimit.index(app)])
+            # print(app, self.timeLimit[self.appsLimit.index(app)])
+
+            self.item.append(app + " " + str(self.timeLimit[self.appsLimit.index(app)] // 60) + "h " + str(self.timeLimit[self.appsLimit.index(app)] % 60) + "m")
+
+
+        self.listWidget = QListWidget(self.ui.limits_list)
+        self.listWidget.addItems(self.item)
+        self.listWidget.show()
+        ###
 
 
     def addLimit(self, tmpApp, tmpTime):    # appends app and time to the arrays
