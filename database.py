@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import *
 
 #klasa za povezivanje s bazom podataka
 class Database(object):
@@ -35,6 +36,11 @@ class Database(object):
     def insertApp(self, time, date, app):
         self.execute('''INSERT INTO usage(date,app,time) VALUES (?,?,?)''',(date, app, time))
         self.commit()
+
+    def getUsageByDate(self, date):
+        self.execute('''SELECT SUM(time) FROM usage WHERE date=?''',(date,))
+        return self.fetchAll()
+
 
     def fetchOne(self):
         return self.cur.fetchone()

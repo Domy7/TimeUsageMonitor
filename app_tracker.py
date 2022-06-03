@@ -1,7 +1,7 @@
 from win32gui import GetForegroundWindow
 import os
 import psutil
-import time
+import time as t
 import win32process
 from datetime import date
 from database import *
@@ -18,12 +18,12 @@ class appTracker():
 
     def __init__(self):
 
-        initialTime = time.time()
+        initialTime = t.time()
         while True:
             currentApp = psutil.Process(win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]).name().replace(".exe", "")
 
-            self.timeStamp[currentApp] = int(time.time())
-            time.sleep(1)
+            self.timeStamp[currentApp] = int(t.time())
+            t.sleep(1)
             
             #gledamo ako je trenutna apk prvi put otvorena stavi vrijeme koristenja na 0
             if currentApp not in self.processTime.keys():
@@ -31,12 +31,12 @@ class appTracker():
                 
             #odnosno ako nije povecaj vrijeme kao:
             #ukupnoVr + trenutnoVr - vrijeme kada je otvorena apk zapisno u timestampu    
-            self.processTime[currentApp] = self.processTime[currentApp]+int(time.time())-self.timeStamp[currentApp]
+            self.processTime[currentApp] = self.processTime[currentApp]+int(t.time())-self.timeStamp[currentApp]
             
             #svakih 5 sekundi spremi podatke u bazu  
-            if time.time() - initialTime > 5:
+            if t.time() - initialTime > 5:
                 self.saveToDatabase()
-                initialTime = time.time()
+                initialTime = t.time()
                 self.processTime = {}
             
             
