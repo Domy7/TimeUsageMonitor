@@ -26,17 +26,30 @@ class MainWindow(QMainWindow):
 
         ###
 
+        apps = db.fetchLimits()
         self.appsLimit = []
+
+
+        for apk in apps:
+            self.appsLimit.append(apk[0])
+
+
         self.timeLimit = []
+        
+        for apk in apps:
+            self.timeLimit.append(round(apk[1] / 60))
 
         # TODO: How to add apps automatically?
         # adding apps manualy:
-        self.ui.choose_app.addItem("Brave")
-        self.ui.choose_app.addItem("cmd")
-        self.ui.choose_app.addItem("Code")
-        self.ui.choose_app.addItem("designer")
-        self.ui.choose_app.addItem("GitHubDesktop")
-        self.ui.choose_app.addItem("Taskmgr")
+
+        allApps = db.allApps()
+
+        for apk in allApps:
+            self.ui.choose_app.addItem(apk[0])
+
+
+        self.showLimits()
+
 
         self.ui.choose_time_h.setMaximum(23)
         self.ui.choose_time_m.setMaximum(59)
@@ -103,29 +116,25 @@ class MainWindow(QMainWindow):
         # print(tmpApp)
         # print(tmpTime)
 
+
         if (not self.appsLimit or not tmpApp in self.appsLimit) and tmpTime:        # checks if array is empty and if specified app already exists in the array
             self.addLimit(tmpApp, tmpTime)
+            db.saveLimit(tmpApp, tmpTime)       # save data to db
         elif tmpApp in self.appsLimit:          # if app (exists and) already has a limit (changes it)
             i = self.appsLimit.index(tmpApp)    # get index of the selected app
             self.timeLimit[i] = tmpTime         # change the time for that index
+            db.updateLimit(tmpApp, tmpTime)
 
             if not tmpTime:                     # if chosen time is 0, deletes the limit
                 self.appsLimit.pop(i)
                 self.timeLimit.pop(i)
+                db.removeLimit(tmpApp)
                                                 # will not add a limit if app doesn't already have one and the set time is 0
         ### testing:
         # print("\n")
         self.item = []
 
-        for app in self.appsLimit:
-            # print(app, self.timeLimit[self.appsLimit.index(app)])
-
-            self.item.append(app + " " + str(self.timeLimit[self.appsLimit.index(app)] // 60) + "h " + str(self.timeLimit[self.appsLimit.index(app)] % 60) + "m")
-
-
-        self.listWidget = QListWidget(self.ui.limits_list)
-        self.listWidget.addItems(self.item)
-        self.listWidget.show()
+        self.showLimits()
         ###
 
 
@@ -164,6 +173,20 @@ class MainWindow(QMainWindow):
     def mousePressEvent(self, event):
         # current pos of the mouse
         self.clickPosition = event.globalPos()
+
+    def showLimits(self):
+        self.item = []
+
+        for app in self.appsLimit:
+            # print(app, self.timeLimit[self.appsLimit.index(app)])
+
+            self.item.append(app + " " + str(self.timeLimit[self.appsLimit.index(app)] // 60) + "h " + str(self.timeLimit[self.appsLimit.index(app)] % 60) + "m")
+
+
+        self.listWidget = QListWidget(self.ui.limits_list)
+        self.listWidget.addItems(self.item)
+        self.listWidget.show()
+
 
     # TODO:
     # opening (expanding) and closing the menu

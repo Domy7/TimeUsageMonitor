@@ -13,7 +13,6 @@ class appTracker():
     blacklist = ['explorer', 'python', 'Time Usage Monitor']
 
     db = Database()
-    db.createTable()
     today = str(date.today())
 
     def __init__(self):
