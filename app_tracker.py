@@ -5,6 +5,9 @@ import time
 import win32process
 from datetime import date
 from database import *
+from win10toast import ToastNotifier
+
+
 
 class appTracker():
     processTime = {}
@@ -39,7 +42,7 @@ class appTracker():
                 self.processTime = {}
             
             
-            print(self.processTime)       
+            print(self.processTime)
 
     def saveToDatabase(self):
         
@@ -48,8 +51,20 @@ class appTracker():
             if not openApp in self.blacklist:
                 if result:
                     self.db.updateAppUsage(result[2] + self.processTime[openApp], self.today, openApp)
+                    self.checkLimit(openApp, result[2])
+
+
                 else:
                     self.db.insertApp(self.processTime[openApp], self.today, openApp)
+
+    def checkLimit(self, currentApp, prcTime):
+        limits = self.db.fetchLimits()
+        for limit in limits:
+            if limit[0] == currentApp and limit[1] <= prcTime:
+                PROCNAME = currentApp + ".exe"
+                for proc in psutil.process_iter():
+                    if proc.name() == PROCNAME:
+                        proc.kill()
 
 if __name__ == "__main__":
 
