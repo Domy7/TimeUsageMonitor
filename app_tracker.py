@@ -3,6 +3,7 @@ import os
 import psutil
 import time
 import win32process
+import string
 from datetime import date
 from database import *
 from win10toast import ToastNotifier
@@ -17,6 +18,8 @@ class appTracker():
 
     db = Database()
     today = str(date.today())
+    notification = ToastNotifier()
+    ALERT_BEFORE = 1
 
     def __init__(self):
 
@@ -60,11 +63,26 @@ class appTracker():
     def checkLimit(self, currentApp, prcTime):
         limits = self.db.fetchLimits()
         for limit in limits:
-            if limit[0] == currentApp and limit[1] <= prcTime:
-                PROCNAME = currentApp + ".exe"
-                for proc in psutil.process_iter():
-                    if proc.name() == PROCNAME:
-                        proc.kill()
+            if limit[0] == currentApp:
+                if limit[1] <= prcTime:
+                    self.notification.show_toast(
+                        "Time Usage Monitor",
+                        "Prešli ste limit korištenja aplikacije {}. Aplikacija blokirana.".format(limit[0].capitalize()),
+                        duration = 6,
+                        threaded = True,
+                    )
+                    PROCNAME = currentApp + ".exe"
+                    for proc in psutil.process_iter():
+                        if proc.name() == PROCNAME:
+                            proc.kill()
+                print (int(limit[1]) - int(prcTime))
+                if int(limit[1]) - int(prcTime) <= int(self.ALERT_BEFORE * 60 + 3) and int(limit[1]) - int(prcTime) >= int(self.ALERT_BEFORE * 60 - 3):
+                    self.notification.show_toast(
+                        "Time Usage Monitor",
+                        "Preostalo je manje od {} min. korištenja aplikacije {}.".format(self.ALERT_BEFORE, limit[0].capitalize()),
+                        duration = 6,
+                        threaded = True,
+                    )
 
 if __name__ == "__main__":
 
