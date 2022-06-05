@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import *
 
 #klasa za povezivanje s bazom podataka
 class Database(object):
@@ -60,6 +61,11 @@ class Database(object):
     def fetchLimits(self):
         self.execute('''SELECT * FROM limits''')
         return self.fetchAll()
+
+    def getUsageByDate(self, date):
+        self.execute('''SELECT SUM(time) FROM usage WHERE date=?''',(date,))
+        return self.fetchAll()
+
 
     def fetchOne(self):
         return self.cur.fetchone()
