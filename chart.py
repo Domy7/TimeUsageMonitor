@@ -37,7 +37,6 @@ class Chart():
         self.series = QtCharts.QPieSeries()
 
         for app in self.data:
-            #print(app)
             self.series.append(str(app[1]).title(), app[2])
 
         #glavna stvar nakon sto su dodani podaci kreiranje samog grafa

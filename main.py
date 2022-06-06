@@ -8,6 +8,7 @@ from qt_material import *
 
 # import icons_rc
 from chart import *
+from bar import *
 from database import *
 from PySide2.QtGui import *
 
@@ -27,23 +28,14 @@ class MainWindow(QMainWindow):
 
         # fetching previously set limits from db
         apps = db.fetchLimits()
-        # initializing limit arrays
-        # self.appsLimit = []
-        # self.timeLimit = []
 
         # initializing limit dictionary
         self.limitsDict = dict()
 
 
         for apk in apps:
-            # self.appsLimit.append(apk[0])
             self.limitsDict[apk[0]] = apk[1] // 60
 
-        
-        # print(self.limitsDict)
-
-        # for apk in apps:
-            # self.timeLimit.append(round(apk[1] / 60))
 
         # adding apps to dropdown menu
         allApps = db.allApps()
@@ -58,9 +50,10 @@ class MainWindow(QMainWindow):
         self.ui.choose_time_h.setMaximum(23)
         self.ui.choose_time_m.setMaximum(59)
 
-        
+        # init chart, bar
         self.data = db.fetchAppsByDate(today)
         self.chart = Chart(self.ui, self.data)
+        self.bar = Bar(self.ui)
 
         # load stylesheet, overrides fonts set in QTdesigner
         apply_stylesheet(app, theme='light_blue.xml')
@@ -92,11 +85,13 @@ class MainWindow(QMainWindow):
         self.ui.exit_button.clicked.connect(lambda: self.close())
         self.ui.resize_button.clicked.connect(lambda: self.restoreOrMaximizeWindow())
 
+        # menu buttons
         self.ui.stats_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.stats_page))
         self.ui.lock_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.lock_page))
         self.ui.settings_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.settings_page))
         self.ui.data_btn.clicked.connect(lambda: self.ui.centralWidget.setCurrentWidget(self.ui.data_page))
 
+        # refresh button, stats tab
         self.ui.refresh_chart_btn.clicked.connect(lambda: self.refreshPieChart())
 
         # self.ui.header_frame.mouseMoveEvent = self.moveWindow
@@ -115,8 +110,6 @@ class MainWindow(QMainWindow):
         
         tmpApp = self.ui.choose_app.currentText()                                           # reads chosen app
         tmpTime = self.ui.choose_time_h.value() * 60 + self.ui.choose_time_m.value()        # reads chosen time in minutes
-        # print(tmpApp)
-        # print(tmpTime)
 
 
         if (not self.limitsDict.keys() or not tmpApp in self.limitsDict.keys()) and tmpTime:        # checks if dictionary is empty and if specified app already exists in the dict
@@ -130,20 +123,14 @@ class MainWindow(QMainWindow):
                 self.limitsDict.pop(tmpApp)
                 db.removeLimit(tmpApp)
                                                 # will not add a limit if app doesn't already have one and the set time is 0
-        ### testing:
-        # print("\n")
-        self.item = []
 
         self.showLimits()
-        ###
     
 
     def showLimits(self):
         self.item = []
 
         for app in self.limitsDict.keys():
-            # print(app, self.timeLimit[self.appsLimit.index(app)])
-
             self.item.append(app + " " + str(self.limitsDict[app] // 60) + "h " + str(self.limitsDict[app] % 60) + "m")
 
 
