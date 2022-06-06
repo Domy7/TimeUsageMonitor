@@ -27,7 +27,7 @@ class Bar():
 
         # self.resize(800, 600)
 
-        self.set0 = QtCharts.QBarSet('Sati')
+        self.set0 = QtCharts.QBarSet('Usage in minutes')
         self.maxTime = 0
         self.daysOfWeek = list()
         self.today = date.today()
@@ -40,10 +40,11 @@ class Bar():
                 if day[0] is None:
                     self.set0.append(0)
                 else:
-                    self.set0.append(day[0])
+                    mins = round(int(day[0])/60)
+                    self.set0.append(mins)
                     if day[0] > self.maxTime:
-                        self.maxTime = day[0]
-                        # maxTime = maxTime // 3600
+                        self.maxTime = mins
+                       
 
         self.createBarChart()
 
