@@ -414,7 +414,7 @@
           <item>
            <widget class="QStackedWidget" name="centralWidget">
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="stats_page">
              <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -1059,6 +1059,7 @@ font-weight: bold;</string>
   </widget>
  </widget>
  <resources>
+  <include location="icons.qrc"/>
   <include location="icons.qrc"/>
   <include location="../../../../.designer/backup/icons.qrc"/>
  </resources>
