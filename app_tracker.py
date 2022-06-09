@@ -3,7 +3,6 @@ import os
 import psutil
 import time as t
 import win32process
-import string
 from datetime import date
 from database import *
 from win10toast import ToastNotifier
@@ -14,7 +13,7 @@ class appTracker():
     processTime = {}
     timeStamp = {}
     
-    blacklist = ['explorer', 'python', 'Time Usage Monitor']
+    blacklist = ['explorer', 'python', 'Time Usage Monitor', 'SearchHost', 'ShellExperienceHost', 'LockApp', 'SafeTips', 'ApplicationFrameHost', 'ScpTrayApp']
 
     db = Database()
     today = str(date.today())

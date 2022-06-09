@@ -46,7 +46,6 @@
             <property name="font">
              <font>
               <pointsize>10</pointsize>
-              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -94,7 +93,6 @@
             <property name="font">
              <font>
               <pointsize>14</pointsize>
-              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -262,63 +260,14 @@
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QGridLayout" name="gridLayout">
-             <item row="2" column="0">
-              <widget class="QPushButton" name="settings_btn">
+             <item row="1" column="0">
+              <widget class="QPushButton" name="lock_btn">
                <property name="text">
                 <string/>
                </property>
                <property name="icon">
                 <iconset resource="icons.qrc">
-                 <normaloff>:/icons/icons/settings.svg</normaloff>:/icons/icons/settings.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>32</width>
-                 <height>32</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QPushButton" name="data_btn">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="icons.qrc">
-                 <normaloff>:/icons/icons/database.svg</normaloff>:/icons/icons/database.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>32</width>
-                 <height>32</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QLabel" name="settings_lbl">
-               <property name="font">
-                <font>
-                 <pointsize>10</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Settings</string>
-               </property>
-               <property name="margin">
-                <number>5</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QPushButton" name="stats_btn">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="icons.qrc">
-                 <normaloff>:/icons/icons/bar-chart-2.svg</normaloff>:/icons/icons/bar-chart-2.svg</iconset>
+                 <normaloff>:/icons/icons/key.svg</normaloff>:/icons/icons/key.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -343,6 +292,21 @@
                </property>
               </widget>
              </item>
+             <item row="2" column="1">
+              <widget class="QLabel" name="settings_lbl">
+               <property name="font">
+                <font>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Settings</string>
+               </property>
+               <property name="margin">
+                <number>5</number>
+               </property>
+              </widget>
+             </item>
              <item row="0" column="1">
               <widget class="QLabel" name="stats_lbl">
                <property name="font">
@@ -358,29 +322,31 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
-              <widget class="QLabel" name="data_lbl">
-               <property name="font">
-                <font>
-                 <pointsize>10</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Data</string>
-               </property>
-               <property name="margin">
-                <number>5</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QPushButton" name="lock_btn">
+             <item row="2" column="0">
+              <widget class="QPushButton" name="settings_btn">
                <property name="text">
                 <string/>
                </property>
                <property name="icon">
                 <iconset resource="icons.qrc">
-                 <normaloff>:/icons/icons/key.svg</normaloff>:/icons/icons/key.svg</iconset>
+                 <normaloff>:/icons/icons/settings.svg</normaloff>:/icons/icons/settings.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QPushButton" name="stats_btn">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/icons/icons/bar-chart-2.svg</normaloff>:/icons/icons/bar-chart-2.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -468,9 +434,7 @@
                    </property>
                    <property name="font">
                     <font>
-                     <family>MS Shell Dlg 2</family>
                      <pointsize>14</pointsize>
-                     <weight>75</weight>
                      <italic>false</italic>
                      <bold>true</bold>
                     </font>
@@ -629,9 +593,7 @@ font-weight: bold;</string>
                    </property>
                    <property name="font">
                     <font>
-                     <family>MS Shell Dlg 2</family>
                      <pointsize>14</pointsize>
-                     <weight>75</weight>
                      <italic>false</italic>
                      <bold>true</bold>
                     </font>
@@ -846,9 +808,7 @@ font-weight: bold;</string>
                    </property>
                    <property name="font">
                     <font>
-                     <family>MS Shell Dlg 2</family>
                      <pointsize>14</pointsize>
-                     <weight>75</weight>
                      <italic>false</italic>
                      <bold>true</bold>
                     </font>
@@ -923,9 +883,7 @@ font-weight: bold;</string>
                   <widget class="QLabel" name="data_title_lbl">
                    <property name="font">
                     <font>
-                     <family>MS Shell Dlg 2</family>
                      <pointsize>14</pointsize>
-                     <weight>75</weight>
                      <italic>false</italic>
                      <bold>true</bold>
                     </font>
@@ -1084,7 +1042,6 @@ font-weight: bold;</string>
  <resources>
   <include location="icons.qrc"/>
   <include location="icons.qrc"/>
-  <include location="../../../../.designer/backup/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

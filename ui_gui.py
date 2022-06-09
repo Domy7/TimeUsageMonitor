@@ -14,7 +14,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(982, 727)
+        MainWindow.resize(1080, 720)
         MainWindow.setStyleSheet("border: none")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -165,14 +165,14 @@ class Ui_MainWindow(object):
         self.settings_btn.setIconSize(QtCore.QSize(32, 32))
         self.settings_btn.setObjectName("settings_btn")
         self.gridLayout.addWidget(self.settings_btn, 2, 0, 1, 1)
-        self.data_btn = QtWidgets.QPushButton(self.menu_fr)
+        """ self.data_btn = QtWidgets.QPushButton(self.menu_fr)
         self.data_btn.setText("")
         icon5 = QtGui.QIcon()
         icon5.addPixmap(QtGui.QPixmap(":/icons/icons/database.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.data_btn.setIcon(icon5)
         self.data_btn.setIconSize(QtCore.QSize(32, 32))
         self.data_btn.setObjectName("data_btn")
-        self.gridLayout.addWidget(self.data_btn, 3, 0, 1, 1)
+        self.gridLayout.addWidget(self.data_btn, 3, 0, 1, 1)"""
         self.settings_lbl = QtWidgets.QLabel(self.menu_fr)
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -629,7 +629,7 @@ class Ui_MainWindow(object):
         self.settings_lbl.setText(_translate("MainWindow", "Settings"))
         self.lock_lbl.setText(_translate("MainWindow", "Limits"))
         self.stats_lbl.setText(_translate("MainWindow", "Stats"))
-        self.data_lbl.setText(_translate("MainWindow", "Data"))
+        #self.data_lbl.setText(_translate("MainWindow", "Data"))
         self.stats_title_lbl.setText(_translate("MainWindow", "Statistics"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.daily_chart_tab), _translate("MainWindow", "Daily Chart"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.weekly_chart_tab), _translate("MainWindow", "Weekly Chart"))
@@ -640,7 +640,7 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "m"))
         self.submit_limit.setText(_translate("MainWindow", "Done"))
         self.settings_title_lbl.setText(_translate("MainWindow", "Settings"))
-        self.data_title_lbl.setText(_translate("MainWindow", "Data"))
+        #self.data_title_lbl.setText(_translate("MainWindow", "Data"))
         self.version_lbl.setText(_translate("MainWindow", "Version 1.0"))
         self.question_btn.setText(_translate("MainWindow", "?"))
 import icons_rc
