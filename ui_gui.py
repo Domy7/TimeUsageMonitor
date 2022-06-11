@@ -66,10 +66,13 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.main_title_lbl.sizePolicy().hasHeightForWidth())
         self.main_title_lbl.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
-        font.setPointSize(14)
+        font.setFamily("MS Shell Dlg 2")
+        font.setPointSize(16)
         font.setBold(True)
+        font.setItalic(False)
         font.setWeight(75)
         self.main_title_lbl.setFont(font)
+        self.main_title_lbl.setStyleSheet("font: bold 16pt \"MS Shell Dlg 2\";")
         self.main_title_lbl.setObjectName("main_title_lbl")
         self.horizontalLayout_3.addWidget(self.main_title_lbl)
         self.horizontalLayout.addWidget(self.header_center_fr)
@@ -164,6 +167,14 @@ class Ui_MainWindow(object):
         self.settings_lbl.setObjectName("settings_lbl")
         self.gridLayout.addWidget(self.settings_lbl, 2, 1, 1, 1)
         self.settings_btn = QtWidgets.QPushButton(self.menu_fr)
+        self.settings_btn.setStyleSheet(":hover {\n"
+"    color: rgb(246, 238, 255);\n"
+"    background-color: rgb(48, 158, 255);\n"
+"}\n"
+"\n"
+":pressed {\n"
+"    background-color: rgb(146, 188, 255);\n"
+"}")
         self.settings_btn.setText("")
         icon4 = QtGui.QIcon()
         icon4.addPixmap(QtGui.QPixmap(":/icons/icons/settings.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -172,6 +183,14 @@ class Ui_MainWindow(object):
         self.settings_btn.setObjectName("settings_btn")
         self.gridLayout.addWidget(self.settings_btn, 2, 0, 1, 1)
         self.lock_btn = QtWidgets.QPushButton(self.menu_fr)
+        self.lock_btn.setStyleSheet(":hover {\n"
+"    color: rgb(246, 238, 255);\n"
+"    background-color: rgb(48, 158, 255);\n"
+"}\n"
+"\n"
+":pressed {\n"
+"    background-color: rgb(146, 188, 255);\n"
+"}")
         self.lock_btn.setText("")
         icon5 = QtGui.QIcon()
         icon5.addPixmap(QtGui.QPixmap(":/icons/icons/key.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -186,6 +205,14 @@ class Ui_MainWindow(object):
         self.lock_lbl.setObjectName("lock_lbl")
         self.gridLayout.addWidget(self.lock_lbl, 1, 1, 1, 1)
         self.stats_btn = QtWidgets.QPushButton(self.menu_fr)
+        self.stats_btn.setStyleSheet(":hover {\n"
+"    color: rgb(246, 238, 255);\n"
+"    background-color: rgb(48, 158, 255);\n"
+"}\n"
+"\n"
+":pressed {\n"
+"    background-color: rgb(146, 188, 255);\n"
+"}")
         self.stats_btn.setText("")
         icon6 = QtGui.QIcon()
         icon6.addPixmap(QtGui.QPixmap(":/icons/icons/bar-chart-2.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -441,6 +468,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_11.setObjectName("verticalLayout_11")
         self.label_5 = QtWidgets.QLabel(self.existing_limits_fr)
         self.label_5.setStyleSheet("")
+        self.label_5.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_5.setObjectName("label_5")
         self.verticalLayout_11.addWidget(self.label_5)
         self.limits_list = QtWidgets.QListWidget(self.existing_limits_fr)
@@ -448,6 +476,17 @@ class Ui_MainWindow(object):
 "")
         self.limits_list.setObjectName("limits_list")
         self.verticalLayout_11.addWidget(self.limits_list)
+        self.del_selected_limit = QtWidgets.QPushButton(self.existing_limits_fr)
+        self.del_selected_limit.setStyleSheet(":hover {\n"
+"    color: rgb(246, 238, 255);\n"
+"    background-color: rgb(48, 158, 255);\n"
+"}\n"
+"\n"
+":pressed {\n"
+"    background-color: rgb(146, 188, 255);\n"
+"}")
+        self.del_selected_limit.setObjectName("del_selected_limit")
+        self.verticalLayout_11.addWidget(self.del_selected_limit, 0, QtCore.Qt.AlignRight)
         self.verticalLayout_10.addWidget(self.existing_limits_fr)
         self.verticalLayout_4.addWidget(self.lock_body_fr)
         self.centralWidget.addWidget(self.lock_page)
@@ -627,7 +666,8 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "h"))
         self.label_4.setText(_translate("MainWindow", "m"))
         self.submit_limit.setText(_translate("MainWindow", "Done"))
-        self.label_5.setText(_translate("MainWindow", "Your limits:"))
+        self.label_5.setText(_translate("MainWindow", "  Your limits:"))
+        self.del_selected_limit.setText(_translate("MainWindow", "Delete selected limit"))
         self.settings_title_lbl.setText(_translate("MainWindow", "Settings"))
         self.data_title_lbl.setText(_translate("MainWindow", "Data"))
         self.version_lbl.setText(_translate("MainWindow", "Version 1.0"))

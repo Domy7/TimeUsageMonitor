@@ -93,10 +93,15 @@
             </property>
             <property name="font">
              <font>
-              <pointsize>14</pointsize>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>16</pointsize>
               <weight>75</weight>
+              <italic>false</italic>
               <bold>true</bold>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: bold 16pt &quot;MS Shell Dlg 2&quot;;</string>
             </property>
             <property name="text">
              <string>TimeUsageMonitor</string>
@@ -279,6 +284,16 @@
              </item>
              <item row="2" column="0">
               <widget class="QPushButton" name="settings_btn">
+               <property name="styleSheet">
+                <string notr="true">:hover {
+	color: rgb(246, 238, 255);
+	background-color: rgb(48, 158, 255);
+}
+
+:pressed {
+	background-color: rgb(146, 188, 255);
+}</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -296,6 +311,16 @@
              </item>
              <item row="1" column="0">
               <widget class="QPushButton" name="lock_btn">
+               <property name="styleSheet">
+                <string notr="true">:hover {
+	color: rgb(246, 238, 255);
+	background-color: rgb(48, 158, 255);
+}
+
+:pressed {
+	background-color: rgb(146, 188, 255);
+}</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -328,6 +353,16 @@
              </item>
              <item row="0" column="0">
               <widget class="QPushButton" name="stats_btn">
+               <property name="styleSheet">
+                <string notr="true">:hover {
+	color: rgb(246, 238, 255);
+	background-color: rgb(48, 158, 255);
+}
+
+:pressed {
+	background-color: rgb(146, 188, 255);
+}</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -765,7 +800,10 @@ font-weight: bold;</string>
                        <string notr="true"/>
                       </property>
                       <property name="text">
-                       <string>Your limits:</string>
+                       <string>  Your limits:</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                       </property>
                      </widget>
                     </item>
@@ -774,6 +812,23 @@ font-weight: bold;</string>
                       <property name="styleSheet">
                        <string notr="true">background-color: rgba(220, 220, 220, 231);
 </string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item alignment="Qt::AlignRight">
+                     <widget class="QPushButton" name="del_selected_limit">
+                      <property name="styleSheet">
+                       <string notr="true">:hover {
+	color: rgb(246, 238, 255);
+	background-color: rgb(48, 158, 255);
+}
+
+:pressed {
+	background-color: rgb(146, 188, 255);
+}</string>
+                      </property>
+                      <property name="text">
+                       <string>Delete selected limit</string>
                       </property>
                      </widget>
                     </item>

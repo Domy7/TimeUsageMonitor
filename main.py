@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from pickle import TRUE
 import sys
 # import os
@@ -14,6 +15,14 @@ from database import *
 from PySide2.QtGui import *
 
 from datetime import date
+
+### taskbar icon workaround:
+# https://stackoverflow.com/questions/1551605/how-to-set-applications-taskbar-icon-in-windows-7/1552105#1552105%3E
+# https://stackoverflow.com/questions/67599432/setting-the-same-icon-as-application-icon-in-task-bar-for-pyqt5-application
+import ctypes
+myappid = 'mycompany.myproduct.subproduct.version'  # arbitrary string
+ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+###
 
 today = str(date.today())
 db = Database()
@@ -76,7 +85,7 @@ class MainWindow(QMainWindow):
         self.ui.centralWidget.setGraphicsEffect(self.shadow)
         
         # sets window icon and title
-        #self.setWindowIcon(QtGui.QIcon("path"))
+        self.setWindowIcon(QtGui.QIcon("icon.ico"))
         self.setWindowTitle("TimeUsageMonitor")
 
         # resize window
@@ -102,8 +111,23 @@ class MainWindow(QMainWindow):
         #self.ui.menu_btn.clicked.connect(lambda: self.openMenu())
 
         self.ui.submit_limit.clicked.connect(lambda: self.submitLimit())
+        self.ui.del_selected_limit.clicked.connect(lambda: self.deleteLimit())
+
+    
+    def deleteLimit(self):
+        
+        index = self.ui.limits_list.currentRow()
+        if index < 0: return        # limits_list is empty
+        item = self.ui.limits_list.takeItem(index)      # deletes limit from gui and gets selected QListWidgetItem
+        app = QtWidgets.QListWidgetItem.text(item).partition('\t')[0]       # extracts name of the app from selected (QListWidgetItem) limit
+        self.removeLimit(app)
 
 
+    def removeLimit(self, tmpApp):
+        self.limitsDict.pop(tmpApp)     # deletes limit from dictionary
+        db.removeLimit(tmpApp)          # deletes limit from db
+
+    
     def submitLimit(self):
 
         tmpApp = ""
@@ -121,8 +145,7 @@ class MainWindow(QMainWindow):
             db.updateLimit(tmpApp, tmpTime)
 
             if not tmpTime:                     # if chosen time is 0, deletes the limit
-                self.limitsDict.pop(tmpApp)
-                db.removeLimit(tmpApp)
+                self.removeLimit(tmpApp)
                                                 # will not add a limit if app doesn't already have one and the set time is 0
 
         self.showLimits()
@@ -132,7 +155,7 @@ class MainWindow(QMainWindow):
         self.items = []
 
         for app in self.limitsDict.keys():
-            self.items.append(app + " " + str(self.limitsDict[app] // 60) + "h " + str(self.limitsDict[app] % 60) + "m")
+            self.items.append(app + "\t" + str(self.limitsDict[app] // 60) + "h " + str(self.limitsDict[app] % 60) + "m")
 
         # listWidget init
         self.ui.limits_list.setAlternatingRowColors(True)
