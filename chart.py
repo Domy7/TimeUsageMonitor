@@ -33,6 +33,7 @@ class Chart():
 
         self.data = data
 
+        # za refresh
         self.chart.removeSeries(self.series)
         self.series = QtCharts.QPieSeries()
 
@@ -41,6 +42,7 @@ class Chart():
 
         #glavna stvar nakon sto su dodani podaci kreiranje samog grafa
         self.chart.addSeries(self.series)
+        self.chart.setTitle('Today usage')
 
         #animacije, koje osi se vide sitnice
         self.chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
@@ -48,6 +50,8 @@ class Chart():
         self.chart.legend().setVisible(True)
         self.chart.legend().setAlignment(QtCore.Qt.AlignRight)
         self.chart.legend().setFont(QtGui.QFont("25"))
+
+        # boja pozadine
         self.chart.setBackgroundBrush(QtGui.QBrush("transparent"))
 
         self.series.setLabelsVisible()
@@ -63,7 +67,7 @@ class Chart():
         #prvi parametar sirina grafa po x- osi suzi sa vecim brojevima
         #drugi parametar visina grafa po y- osi smanji sa vecim brojevima
         #treci i cetvrti izgledaju kao da rade istu stvar kao 1. i 2. ne znam 
-        self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
+        # self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
                 
         #ovo valjda polozi onda graf na kraju na to mjesto
         self.lay.setContentsMargins(0, 0, 0, 0)

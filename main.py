@@ -1,3 +1,4 @@
+from pickle import TRUE
 import sys
 # import os
 from venv import create
@@ -128,15 +129,25 @@ class MainWindow(QMainWindow):
     
 
     def showLimits(self):
-        self.item = []
+        self.items = []
 
         for app in self.limitsDict.keys():
-            self.item.append(app + " " + str(self.limitsDict[app] // 60) + "h " + str(self.limitsDict[app] % 60) + "m")
+            self.items.append(app + " " + str(self.limitsDict[app] // 60) + "h " + str(self.limitsDict[app] % 60) + "m")
 
+        # listWidget init
+        # self.listWidget = QListWidget(self.ui.limits_list)
+        # self.listWidget.setAlternatingRowColors(True)
+        # self.listWidget.movement()
 
-        self.listWidget = QListWidget(self.ui.limits_list)
-        self.listWidget.addItems(self.item)
-        self.listWidget.show()
+        # self.listWidget.addItems(self.item)
+        # self.listWidget.show()
+
+        self.ui.limits_list.setAlternatingRowColors(True)
+        self.ui.limits_list.movement()
+
+        self.ui.limits_list.clear()
+        self.ui.limits_list.addItems(self.items)
+        self.ui.limits_list.show()
 
 
     def refreshPieChart(self):

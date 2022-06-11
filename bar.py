@@ -4,10 +4,8 @@ from datetime import date
 from ui_gui import *
 
 from PySide2.QtWidgets import *
-# from PyQt5.QtChart import QChart, QChartView, QValueAxis, QBarCategoryAxis, QBarSet, QBarSeries
 from PySide2.QtCharts import QtCharts
-# from PyQt5.Qt import Qt
-from PySide2.QtGui import QPainter
+from PySide2.QtGui import QPainter, Qt
 
 from database import *
 import calendar
@@ -16,7 +14,6 @@ db = Database()
 class Bar():
 
     def __init__(self, ui):
-        # self.data = data
         self.ui = ui
 
         #odabir vrste grafa
@@ -24,8 +21,6 @@ class Bar():
         self.chart = QtCharts.QChart()
         self.chartview = QtCharts.QChartView(self.chart)
         self.lay = QHBoxLayout(self.ui.weekly_bar_container)
-
-        # self.resize(800, 600)
 
         self.set0 = QtCharts.QBarSet('Usage in minutes')
         self.maxTime = 0
@@ -46,7 +41,6 @@ class Bar():
                     if mins > self.maxTime:
                         self.maxTime = mins
                        
-
         self.createBarChart()
 
     def createBarChart(self):
@@ -67,7 +61,15 @@ class Bar():
         self.chart.legend().setVisible(True)
         self.chart.legend().setAlignment(QtCore.Qt.AlignBottom)
 
+        # boja pozadine:
+        self.chart.setBackgroundBrush(QtGui.QBrush("transparent"))
+        # boja okvira:
+        # self.chart.setBackgroundPen(QtGui.QPen(Qt.white))
+        # idk:
+        # self.chart.setPlotAreaBackgroundPen(QtGui.QPen(Qt.black))
+        # self.chart.setPlotAreaBackgroundVisible()
+
         self.chartview.setRenderHint(QPainter.Antialiasing)
-        self.ui.weekly_bar_container.setContentsMargins(0, 0, 0, 0)
+        # self.ui.weekly_bar_container.setContentsMargins(0, 0, 0, 0)
         self.lay.setContentsMargins(0, 0, 0, 0)
         self.lay.addWidget(self.chartview)

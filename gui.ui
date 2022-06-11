@@ -46,6 +46,7 @@
             <property name="font">
              <font>
               <pointsize>10</pointsize>
+              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -93,6 +94,7 @@
             <property name="font">
              <font>
               <pointsize>14</pointsize>
+              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -260,6 +262,38 @@
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QGridLayout" name="gridLayout">
+             <item row="2" column="1">
+              <widget class="QLabel" name="settings_lbl">
+               <property name="font">
+                <font>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Settings</string>
+               </property>
+               <property name="margin">
+                <number>5</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QPushButton" name="settings_btn">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/icons/icons/settings.svg</normaloff>:/icons/icons/settings.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
+              </widget>
+             </item>
              <item row="1" column="0">
               <widget class="QPushButton" name="lock_btn">
                <property name="text">
@@ -292,18 +326,20 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
-              <widget class="QLabel" name="settings_lbl">
-               <property name="font">
-                <font>
-                 <pointsize>10</pointsize>
-                </font>
-               </property>
+             <item row="0" column="0">
+              <widget class="QPushButton" name="stats_btn">
                <property name="text">
-                <string>Settings</string>
+                <string/>
                </property>
-               <property name="margin">
-                <number>5</number>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/icons/icons/bar-chart-2.svg</normaloff>:/icons/icons/bar-chart-2.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
                </property>
               </widget>
              </item>
@@ -319,40 +355,6 @@
                </property>
                <property name="margin">
                 <number>5</number>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QPushButton" name="settings_btn">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="icons.qrc">
-                 <normaloff>:/icons/icons/settings.svg</normaloff>:/icons/icons/settings.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>32</width>
-                 <height>32</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QPushButton" name="stats_btn">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="icons.qrc">
-                 <normaloff>:/icons/icons/bar-chart-2.svg</normaloff>:/icons/icons/bar-chart-2.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>32</width>
-                 <height>32</height>
-                </size>
                </property>
               </widget>
              </item>
@@ -380,7 +382,7 @@
           <item>
            <widget class="QStackedWidget" name="centralWidget">
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="stats_page">
              <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -434,7 +436,9 @@
                    </property>
                    <property name="font">
                     <font>
+                     <family>MS Shell Dlg 2</family>
                      <pointsize>14</pointsize>
+                     <weight>75</weight>
                      <italic>false</italic>
                      <bold>true</bold>
                     </font>
@@ -593,7 +597,9 @@ font-weight: bold;</string>
                    </property>
                    <property name="font">
                     <font>
+                     <family>MS Shell Dlg 2</family>
                      <pointsize>14</pointsize>
+                     <weight>75</weight>
                      <italic>false</italic>
                      <bold>true</bold>
                     </font>
@@ -621,6 +627,9 @@ font-weight: bold;</string>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 10pt;</string>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
@@ -630,6 +639,9 @@ font-weight: bold;</string>
                 <layout class="QVBoxLayout" name="verticalLayout_10">
                  <item alignment="Qt::AlignTop">
                   <widget class="QFrame" name="new_limit_fr">
+                   <property name="styleSheet">
+                    <string notr="true"/>
+                   </property>
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
@@ -748,12 +760,20 @@ font-weight: bold;</string>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_11">
                     <item>
-                     <widget class="QListView" name="limits_list">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
+                     <widget class="QLabel" name="label_5">
+                      <property name="styleSheet">
+                       <string notr="true"/>
+                      </property>
+                      <property name="text">
+                       <string>Your limits:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QListWidget" name="limits_list">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgba(220, 220, 220, 231);
+</string>
                       </property>
                      </widget>
                     </item>
@@ -808,7 +828,9 @@ font-weight: bold;</string>
                    </property>
                    <property name="font">
                     <font>
+                     <family>MS Shell Dlg 2</family>
                      <pointsize>14</pointsize>
+                     <weight>75</weight>
                      <italic>false</italic>
                      <bold>true</bold>
                     </font>
@@ -883,7 +905,9 @@ font-weight: bold;</string>
                   <widget class="QLabel" name="data_title_lbl">
                    <property name="font">
                     <font>
+                     <family>MS Shell Dlg 2</family>
                      <pointsize>14</pointsize>
+                     <weight>75</weight>
                      <italic>false</italic>
                      <bold>true</bold>
                     </font>
@@ -1042,6 +1066,8 @@ font-weight: bold;</string>
  <resources>
   <include location="icons.qrc"/>
   <include location="icons.qrc"/>
+  <include location="icons.qrc"/>
+  <include location="../../../.designer/backup/icons.qrc"/>
  </resources>
  <connections/>
 </ui>
