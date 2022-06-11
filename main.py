@@ -135,13 +135,6 @@ class MainWindow(QMainWindow):
             self.items.append(app + " " + str(self.limitsDict[app] // 60) + "h " + str(self.limitsDict[app] % 60) + "m")
 
         # listWidget init
-        # self.listWidget = QListWidget(self.ui.limits_list)
-        # self.listWidget.setAlternatingRowColors(True)
-        # self.listWidget.movement()
-
-        # self.listWidget.addItems(self.item)
-        # self.listWidget.show()
-
         self.ui.limits_list.setAlternatingRowColors(True)
         self.ui.limits_list.movement()
 
