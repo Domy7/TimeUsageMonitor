@@ -26,10 +26,12 @@ class appTracker():
         while True:
 
             pidCheck = win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]
-            while pidCheck < 0:
+            # print(type(pidCheck))
+            while pidCheck < 0 and pidCheck > 4194304:
                 pidCheck = win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]
+                print("ERROR")
 
-            currentApp = psutil.Process(win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]).name().replace(".exe", "")
+            currentApp = psutil.Process(pidCheck).name().replace(".exe", "")
 
             self.timeStamp[currentApp] = int(t.time())
             t.sleep(1)
@@ -95,8 +97,3 @@ if __name__ == "__main__":
     file.close()
     
     appTracker()
-
-
-
-
-
