@@ -53,9 +53,7 @@ class MainWindow(QMainWindow):
         for apk in allApps:
             self.ui.choose_app.addItem(apk[0])
 
-
         self.showLimits()
-
 
         self.ui.choose_time_h.setMaximum(23)
         self.ui.choose_time_m.setMaximum(59)

@@ -36,7 +36,7 @@ class Bar():
                     self.set0.append(0)
                 else:
                     mins = round(int(day[0])/60)
-                    print(mins)
+                    # print(mins)
                     self.set0.append(mins)
                     if mins > self.maxTime:
                         self.maxTime = mins

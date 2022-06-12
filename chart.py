@@ -34,7 +34,7 @@ class Chart():
         self.data = data
 
         # za refresh
-        self.chart.removeSeries(self.series)
+        self.chart.removeAllSeries()
         self.series = QtCharts.QPieSeries()
 
         for app in self.data:

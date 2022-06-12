@@ -31,7 +31,13 @@ class appTracker():
                 pidCheck = win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]
                 print("ERROR")
 
-            currentApp = psutil.Process(pidCheck).name().replace(".exe", "")
+            try:
+                currentApp = psutil.Process(pidCheck).name().replace(".exe", "")
+            except:
+                print("EXCEPTION: PID = " + str(pidCheck))
+                # file = open("exceptions.txt", "w")
+                # file.write("EXCEPTION: PID = " + str(pidCheck))
+                # file.close()
 
             self.timeStamp[currentApp] = int(t.time())
             t.sleep(1)
@@ -50,8 +56,8 @@ class appTracker():
                 initialTime = t.time()
                 self.processTime = {}
             
-            
             print(self.processTime)
+
 
     def saveToDatabase(self):
         
