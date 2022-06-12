@@ -1,4 +1,5 @@
 from win32gui import GetForegroundWindow
+import win32gui
 import os
 import psutil
 import time as t
@@ -25,18 +26,23 @@ class appTracker():
         initialTime = t.time()
         while True:
 
-            pidCheck = win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]
+            currentPID = win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]
             # print(type(pidCheck))
-            while pidCheck < 0 and pidCheck > 4194304:
-                pidCheck = win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]
+            while currentPID < 0 and currentPID > 4194304:
+                currentPID = win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]
                 print("ERROR")
 
             try:
-                currentApp = psutil.Process(pidCheck).name().replace(".exe", "")
+                currentApp = psutil.Process(currentPID).name().replace(".exe", "")
             except:
-                print("EXCEPTION: PID = " + str(pidCheck))
+                print("EXCEPTION: PID = " + str(currentPID))
+                currentApp = "explorer"
+                for proc in psutil.process_iter():
+                    if proc.name() == currentApp + '.exe':
+                        # win32gui.SetActiveWindow(currentPID)
+                        currentPID = proc.pid
                 # file = open("exceptions.txt", "w")
-                # file.write("EXCEPTION: PID = " + str(pidCheck))
+                # file.write("EXCEPTION: PID = " + str(currentPID))
                 # file.close()
 
             self.timeStamp[currentApp] = int(t.time())

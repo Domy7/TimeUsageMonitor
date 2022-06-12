@@ -35,6 +35,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.centralWidget.setCurrentWidget(self.ui.stats_page)
+        self.ui.tabWidget.setCurrentWidget(self.ui.daily_chart_tab)
 
         # fetching previously set limits from db
         apps = db.fetchLimits()
