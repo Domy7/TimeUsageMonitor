@@ -24,6 +24,11 @@ class appTracker():
 
         initialTime = t.time()
         while True:
+
+            pidCheck = win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]
+            while pidCheck < 0:
+                pidCheck = win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]
+
             currentApp = psutil.Process(win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]).name().replace(".exe", "")
 
             self.timeStamp[currentApp] = int(t.time())
