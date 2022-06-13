@@ -41,9 +41,10 @@ class appTracker():
                     if proc.name() == currentApp + '.exe':
                         # win32gui.SetActiveWindow(currentPID)
                         currentPID = proc.pid
-                # file = open("exceptions.txt", "w")
-                # file.write("EXCEPTION: PID = " + str(currentPID))
-                # file.close()
+                        file = open("exceptions.txt", "a")
+                        file.write("EXCEPTION: PID = " + str(currentPID) + "\n")
+                        file.write("at: " + self.today + "\n\n")
+                        file.close()
 
             self.timeStamp[currentApp] = int(t.time())
             t.sleep(1)
