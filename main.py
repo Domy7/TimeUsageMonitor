@@ -1,20 +1,20 @@
 from asyncio.windows_events import NULL
+from datetime import date
+# import os
 from pickle import TRUE
 import sys
-# import os
 from venv import create
 
 # from bs4 import Stylesheet
-from ui_gui import *
+from PySide2.QtGui import *
 from qt_material import *
 
-# import icons_rc
-from chart import *
 from bar import *
+from chart import *
 from database import *
-from PySide2.QtGui import *
-
-from datetime import date
+# import icons_rc
+from settings_functions import *
+from ui_gui import *
 
 ### taskbar icon workaround:
 # https://stackoverflow.com/questions/1551605/how-to-set-applications-taskbar-icon-in-windows-7/1552105#1552105%3E

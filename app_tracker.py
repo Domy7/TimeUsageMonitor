@@ -14,7 +14,7 @@ class appTracker():
     processTime = {}
     timeStamp = {}
     
-    blacklist = ['explorer', 'python', 'Time Usage Monitor', 'SearchHost', 'ShellExperienceHost', 'LockApp', 'SafeTips', 'ApplicationFrameHost', 'ScpTrayApp']
+    blacklist = ['explorer', 'python', 'Time Usage Monitor', 'SearchHost', 'ShellExperienceHost', 'LockApp', 'SafeTips', 'ApplicationFrameHost', 'ScpTrayApp', 'System Idle Process']
 
     db = Database()
     today = str(date.today())
@@ -41,9 +41,11 @@ class appTracker():
                     if proc.name() == currentApp + '.exe':
                         # win32gui.SetActiveWindow(currentPID)
                         currentPID = proc.pid
+                        currTime = t.time()
                         file = open("exceptions.txt", "a")
                         file.write("EXCEPTION: PID = " + str(currentPID) + "\n")
-                        file.write("at: " + self.today + "\n\n")
+                        # file.write("at: " + str(currTime // 3600) + ":" + str((currTime % 3600) // 60) + "." + str(currTime %) + "\n\n")
+                        file.write(t.asctime(t.localtime(t.time())) + "\n\n")
                         file.close()
 
             self.timeStamp[currentApp] = int(t.time())

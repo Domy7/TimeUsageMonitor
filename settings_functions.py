@@ -53,4 +53,4 @@ def terminateAppTracker():
 def startAppTracker():
     os.startfile(os.path.dirname(__file__) + "\\run_app_tracker.bat")
 
-startAppTracker()
+# startAppTracker()

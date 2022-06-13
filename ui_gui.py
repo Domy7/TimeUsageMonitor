@@ -153,7 +153,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_17 = QtWidgets.QVBoxLayout(self.left_menu_fr)
         self.verticalLayout_17.setObjectName("verticalLayout_17")
         self.menu_fr = QtWidgets.QFrame(self.left_menu_fr)
-        self.menu_fr.setStyleSheet("/* background-color: rgba(220, 220, 220, 231); */")
+        self.menu_fr.setStyleSheet("/* background-color: rgba(220, 220, 220, 231); */\n"
+"font: 11pt")
         self.menu_fr.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.menu_fr.setFrameShadow(QtWidgets.QFrame.Raised)
         self.menu_fr.setObjectName("menu_fr")
@@ -195,14 +196,20 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.settings_btn, 2, 0, 1, 1)
         self.settings_lbl = QtWidgets.QLabel(self.menu_fr)
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setPointSize(11)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
         self.settings_lbl.setFont(font)
         self.settings_lbl.setAlignment(QtCore.Qt.AlignCenter)
         self.settings_lbl.setObjectName("settings_lbl")
         self.gridLayout.addWidget(self.settings_lbl, 2, 1, 1, 1)
         self.stats_lbl = QtWidgets.QLabel(self.menu_fr)
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setPointSize(11)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
         self.stats_lbl.setFont(font)
         self.stats_lbl.setAlignment(QtCore.Qt.AlignCenter)
         self.stats_lbl.setObjectName("stats_lbl")
@@ -225,7 +232,10 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.stats_btn, 0, 0, 1, 1)
         self.lock_lbl = QtWidgets.QLabel(self.menu_fr)
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setPointSize(11)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
         self.lock_lbl.setFont(font)
         self.lock_lbl.setAlignment(QtCore.Qt.AlignCenter)
         self.lock_lbl.setObjectName("lock_lbl")
@@ -308,6 +318,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_11.setObjectName("horizontalLayout_11")
         self.verticalLayout_5.addWidget(self.frame_2, 0, QtCore.Qt.AlignRight|QtCore.Qt.AlignTop)
         self.tabWidget = QtWidgets.QTabWidget(self.stats_body_fr)
+        self.tabWidget.setStyleSheet("font: 10pt;")
         self.tabWidget.setObjectName("tabWidget")
         self.daily_chart_tab = QtWidgets.QWidget()
         self.daily_chart_tab.setObjectName("daily_chart_tab")
@@ -395,7 +406,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lock_body_fr.sizePolicy().hasHeightForWidth())
         self.lock_body_fr.setSizePolicy(sizePolicy)
-        self.lock_body_fr.setStyleSheet("font: 10pt;")
+        self.lock_body_fr.setStyleSheet("font: 11pt;")
         self.lock_body_fr.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.lock_body_fr.setFrameShadow(QtWidgets.QFrame.Raised)
         self.lock_body_fr.setObjectName("lock_body_fr")
@@ -460,6 +471,10 @@ class Ui_MainWindow(object):
 "\n"
 ":pressed {\n"
 "    background-color: rgb(146, 188, 255);\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    font: 10pt;\n"
 "}")
         self.submit_limit.setObjectName("submit_limit")
         self.horizontalLayout_12.addWidget(self.submit_limit, 0, QtCore.Qt.AlignRight)
@@ -493,6 +508,10 @@ class Ui_MainWindow(object):
 "\n"
 ":pressed {\n"
 "    background-color: rgb(146, 188, 255);\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    font: 10pt;\n"
 "}")
         self.del_selected_limit.setObjectName("del_selected_limit")
         self.verticalLayout_11.addWidget(self.del_selected_limit, 0, QtCore.Qt.AlignRight)
@@ -545,6 +564,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.settings_body_fr.sizePolicy().hasHeightForWidth())
         self.settings_body_fr.setSizePolicy(sizePolicy)
+        self.settings_body_fr.setStyleSheet("font: 11pt;")
         self.settings_body_fr.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.settings_body_fr.setFrameShadow(QtWidgets.QFrame.Raised)
         self.settings_body_fr.setObjectName("settings_body_fr")
@@ -565,7 +585,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_14 = QtWidgets.QVBoxLayout(self.frame_4)
         self.verticalLayout_14.setObjectName("verticalLayout_14")
         self.label_6 = QtWidgets.QLabel(self.frame_4)
-        self.label_6.setStyleSheet("font: 10pt;")
+        self.label_6.setStyleSheet("font: bold;")
         self.label_6.setAlignment(QtCore.Qt.AlignCenter)
         self.label_6.setObjectName("label_6")
         self.verticalLayout_14.addWidget(self.label_6)
@@ -593,6 +613,10 @@ class Ui_MainWindow(object):
 "\n"
 ":pressed {\n"
 "    background-color: rgb(146, 188, 255);\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    font: 10pt;\n"
 "}")
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout_15.addWidget(self.pushButton)
@@ -613,7 +637,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.frame_5)
         self.verticalLayout_13.setObjectName("verticalLayout_13")
         self.label_8 = QtWidgets.QLabel(self.frame_5)
-        self.label_8.setStyleSheet("font: 10pt;")
+        self.label_8.setStyleSheet("font: bold;")
         self.label_8.setAlignment(QtCore.Qt.AlignCenter)
         self.label_8.setObjectName("label_8")
         self.verticalLayout_13.addWidget(self.label_8)
@@ -641,6 +665,10 @@ class Ui_MainWindow(object):
 "\n"
 ":pressed {\n"
 "    background-color: rgb(146, 188, 255);\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    font: 10pt;\n"
 "}")
         self.pushButton_2.setObjectName("pushButton_2")
         self.verticalLayout_16.addWidget(self.pushButton_2)
@@ -661,7 +689,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_18 = QtWidgets.QVBoxLayout(self.frame_9)
         self.verticalLayout_18.setObjectName("verticalLayout_18")
         self.label_10 = QtWidgets.QLabel(self.frame_9)
-        self.label_10.setStyleSheet("font: 10pt;")
+        self.label_10.setStyleSheet("font: bold;")
         self.label_10.setAlignment(QtCore.Qt.AlignCenter)
         self.label_10.setObjectName("label_10")
         self.verticalLayout_18.addWidget(self.label_10)
@@ -689,6 +717,10 @@ class Ui_MainWindow(object):
 "\n"
 ":pressed {\n"
 "    background-color: rgb(146, 188, 255);\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    font: 10pt;\n"
 "}")
         self.pushButton_3.setObjectName("pushButton_3")
         self.verticalLayout_19.addWidget(self.pushButton_3)
@@ -822,19 +854,19 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Set the time:"))
         self.label_3.setText(_translate("MainWindow", "h"))
         self.label_4.setText(_translate("MainWindow", "m"))
-        self.submit_limit.setText(_translate("MainWindow", "Done"))
+        self.submit_limit.setText(_translate("MainWindow", "DONE"))
         self.label_5.setText(_translate("MainWindow", "  Your limits:"))
-        self.del_selected_limit.setText(_translate("MainWindow", "Delete selected limit"))
+        self.del_selected_limit.setText(_translate("MainWindow", "DELETE SELECTED LIMIT"))
         self.settings_title_lbl.setText(_translate("MainWindow", "Settings"))
-        self.label_6.setText(_translate("MainWindow", "function"))
+        self.label_6.setText(_translate("MainWindow", "Run app timer on startup"))
         self.label_7.setText(_translate("MainWindow", "description"))
-        self.pushButton.setText(_translate("MainWindow", "maybe just different colors"))
-        self.label_8.setText(_translate("MainWindow", "function"))
+        self.pushButton.setText(_translate("MainWindow", "DISABLED"))
+        self.label_8.setText(_translate("MainWindow", "Start/Stop app timer"))
         self.label_9.setText(_translate("MainWindow", "description"))
-        self.pushButton_2.setText(_translate("MainWindow", "labels will change depending on wether it should turn on or off"))
-        self.label_10.setText(_translate("MainWindow", "function"))
-        self.label_11.setText(_translate("MainWindow", "description"))
-        self.pushButton_3.setText(_translate("MainWindow", "1-auto, 2-start/stop, 3-darkmode"))
+        self.pushButton_2.setText(_translate("MainWindow", "START"))
+        self.label_10.setText(_translate("MainWindow", "Dark/Light mode"))
+        self.label_11.setText(_translate("MainWindow", "description (not necessary?)"))
+        self.pushButton_3.setText(_translate("MainWindow", "moon.svg / sun.svg"))
         self.data_title_lbl.setText(_translate("MainWindow", "Data"))
         self.version_lbl.setText(_translate("MainWindow", "Version 1.0"))
         self.question_btn.setText(_translate("MainWindow", "?"))

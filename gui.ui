@@ -259,7 +259,8 @@
           <item>
            <widget class="QFrame" name="menu_fr">
             <property name="styleSheet">
-             <string notr="true">/* background-color: rgba(220, 220, 220, 231); */</string>
+             <string notr="true">/* background-color: rgba(220, 220, 220, 231); */
+font: 11pt</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -339,7 +340,10 @@
               <widget class="QLabel" name="settings_lbl">
                <property name="font">
                 <font>
-                 <pointsize>10</pointsize>
+                 <pointsize>11</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
                 </font>
                </property>
                <property name="text">
@@ -357,7 +361,10 @@
               <widget class="QLabel" name="stats_lbl">
                <property name="font">
                 <font>
-                 <pointsize>10</pointsize>
+                 <pointsize>11</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
                 </font>
                </property>
                <property name="text">
@@ -402,7 +409,10 @@
               <widget class="QLabel" name="lock_lbl">
                <property name="font">
                 <font>
-                 <pointsize>10</pointsize>
+                 <pointsize>11</pointsize>
+                 <weight>50</weight>
+                 <italic>false</italic>
+                 <bold>false</bold>
                 </font>
                </property>
                <property name="text">
@@ -560,6 +570,9 @@ font-weight: bold;</string>
                  </item>
                  <item>
                   <widget class="QTabWidget" name="tabWidget">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt;</string>
+                   </property>
                    <property name="currentIndex">
                     <number>0</number>
                    </property>
@@ -710,7 +723,7 @@ font-weight: bold;</string>
                  </sizepolicy>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">font: 10pt;</string>
+                 <string notr="true">font: 11pt;</string>
                 </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -816,10 +829,14 @@ font-weight: bold;</string>
 
 :pressed {
 	background-color: rgb(146, 188, 255);
+}
+
+QPushButton {
+	font: 10pt;
 }</string>
                       </property>
                       <property name="text">
-                       <string>Done</string>
+                       <string>DONE</string>
                       </property>
                      </widget>
                     </item>
@@ -872,10 +889,14 @@ font-weight: bold;</string>
 
 :pressed {
 	background-color: rgb(146, 188, 255);
+}
+
+QPushButton {
+	font: 10pt;
 }</string>
                       </property>
                       <property name="text">
-                       <string>Delete selected limit</string>
+                       <string>DELETE SELECTED LIMIT</string>
                       </property>
                      </widget>
                     </item>
@@ -960,6 +981,9 @@ font-weight: bold;</string>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 11pt;</string>
+                </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
@@ -992,10 +1016,10 @@ font-weight: bold;</string>
                        <item>
                         <widget class="QLabel" name="label_6">
                          <property name="styleSheet">
-                          <string notr="true">font: 10pt;</string>
+                          <string notr="true">font: bold;</string>
                          </property>
                          <property name="text">
-                          <string>function</string>
+                          <string>Run app timer on startup</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
@@ -1040,10 +1064,14 @@ font-weight: bold;</string>
 
 :pressed {
 	background-color: rgb(146, 188, 255);
+}
+
+QPushButton {
+	font: 10pt;
 }</string>
                          </property>
                          <property name="text">
-                          <string>maybe just different colors</string>
+                          <string>DISABLED</string>
                          </property>
                         </widget>
                        </item>
@@ -1078,10 +1106,10 @@ font-weight: bold;</string>
                        <item>
                         <widget class="QLabel" name="label_8">
                          <property name="styleSheet">
-                          <string notr="true">font: 10pt;</string>
+                          <string notr="true">font: bold;</string>
                          </property>
                          <property name="text">
-                          <string>function</string>
+                          <string>Start/Stop app timer</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
@@ -1126,10 +1154,14 @@ font-weight: bold;</string>
 
 :pressed {
 	background-color: rgb(146, 188, 255);
+}
+
+QPushButton {
+	font: 10pt;
 }</string>
                          </property>
                          <property name="text">
-                          <string>labels will change depending on wether it should turn on or off</string>
+                          <string>START</string>
                          </property>
                         </widget>
                        </item>
@@ -1164,10 +1196,10 @@ font-weight: bold;</string>
                        <item>
                         <widget class="QLabel" name="label_10">
                          <property name="styleSheet">
-                          <string notr="true">font: 10pt;</string>
+                          <string notr="true">font: bold;</string>
                          </property>
                          <property name="text">
-                          <string>function</string>
+                          <string>Dark/Light mode</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
@@ -1177,7 +1209,7 @@ font-weight: bold;</string>
                        <item>
                         <widget class="QLabel" name="label_11">
                          <property name="text">
-                          <string>description</string>
+                          <string>description (not necessary?)</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
@@ -1212,10 +1244,14 @@ font-weight: bold;</string>
 
 :pressed {
 	background-color: rgb(146, 188, 255);
+}
+
+QPushButton {
+	font: 10pt;
 }</string>
                          </property>
                          <property name="text">
-                          <string>1-auto, 2-start/stop, 3-darkmode</string>
+                          <string>moon.svg / sun.svg</string>
                          </property>
                         </widget>
                        </item>
