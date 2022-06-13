@@ -3,18 +3,17 @@ from datetime import date
 # import os
 from pickle import TRUE
 import sys
-from venv import create
 
 # from bs4 import Stylesheet
-from PySide2.QtGui import *
-from qt_material import *
+from PySide2 import QtCore, QtGui, QtWidgets
+from qt_material import apply_stylesheet
 
-from bar import *
-from chart import *
-from database import *
+import bar
+import chart
+import database
 # import icons_rc
-from settings_functions import *
-from ui_gui import *
+import settings_functions as SF
+import ui_gui
 
 ### taskbar icon workaround:
 # https://stackoverflow.com/questions/1551605/how-to-set-applications-taskbar-icon-in-windows-7/1552105#1552105%3E
@@ -25,14 +24,14 @@ ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 ###
 
 today = str(date.today())
-db = Database()
+db = database.Database()
 db.createTable()
 
-class MainWindow(QMainWindow):
+class MainWindow(QtWidgets.QMainWindow):
     
     def __init__(self, parent = None):
-        QMainWindow.__init__(self)
-        self.ui = Ui_MainWindow()
+        QtWidgets.QMainWindow.__init__(self)
+        self.ui = ui_gui.Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.centralWidget.setCurrentWidget(self.ui.stats_page)
         self.ui.tabWidget.setCurrentWidget(self.ui.daily_chart_tab)
@@ -61,8 +60,16 @@ class MainWindow(QMainWindow):
 
         # init chart, bar
         self.data = db.fetchAppsByDate(today)
-        self.chart = Chart(self.ui, self.data)
-        self.bar = Bar(self.ui)
+        self.chart = chart.Chart(self.ui, self.data)
+        self.bar = bar.Bar(self.ui)
+
+        # inits text of run_on_startup_button to 'DISABLE' in case the option was chosen before and script already runs on startup
+        if SF.checkRunOnStartup():
+            self.ui.run_on_startup_button.setText('DISABLE')
+
+        # inits text of start_stop_button to 'STOP' in case the process already exists
+        if SF.checkIfProcessIsRunning():
+            self.ui.start_stop_button.setText('STOP')
 
         # load stylesheet, overrides fonts set in QTdesigner
         apply_stylesheet(app, theme='light_blue.xml')
@@ -74,11 +81,11 @@ class MainWindow(QMainWindow):
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
         # shadow effect style
-        self.shadow = QGraphicsDropShadowEffect(self)
+        self.shadow = QtWidgets.QGraphicsDropShadowEffect(self)
         self.shadow.setBlurRadius(50)
         self.shadow.setXOffset(0)
         self.shadow.setYOffset(0)
-        self.shadow.setColor(QColor(0, 92, 157, 550))
+        self.shadow.setColor(QtGui.QColor(0, 92, 157, 550))
 
         # applies shadow to centrtal widget
         self.ui.centralWidget.setGraphicsEffect(self.shadow)
@@ -88,7 +95,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("TimeUsageMonitor")
 
         # resize window
-        QSizeGrip(self.ui.size_grip)
+        QtWidgets.QSizeGrip(self.ui.size_grip)
 
         self.ui.minimize_button.clicked.connect(lambda: self.showMinimized())
         self.ui.exit_button.clicked.connect(lambda: self.close())
@@ -109,8 +116,48 @@ class MainWindow(QMainWindow):
         # TODO: opens menu
         #self.ui.menu_btn.clicked.connect(lambda: self.openMenu())
 
+        # buttonis for submitting and deleting limits
         self.ui.submit_limit.clicked.connect(lambda: self.submitLimit())
         self.ui.del_selected_limit.clicked.connect(lambda: self.deleteLimit())
+
+        self.ui.run_on_startup_button.clicked.connect(lambda: self.runOnStartup())
+        self.ui.start_stop_button.clicked.connect(lambda: self.startStopScript())
+        self.ui.theme_button.clicked.connect(lambda: self.toggleTheme())
+
+
+    def runOnStartup(self):
+        # checks if the option is currently enabled or disabled (checks text in the button?)
+        # if disabled -> call function to enable it (also start it immediately?)
+        # if it is enabled -> call function to disable it
+        # (if successful) toggle text in button
+        if self.ui.run_on_startup_button.text() == 'ENABLE':
+            SF.enableRunOnStartup()
+            self.ui.run_on_startup_button.setText('DISABLE')
+        else:
+            SF.disableRunOnStartup()
+            self.ui.run_on_startup_button.setText('ENABLE')
+
+
+    def startStopScript(self):
+        # checks if script is already running (checks text in the button?)
+        # if it is running -> call function to terminate it
+        # if it isn't running -> call function to start it
+        # (if successful) -> toggle text in button
+        if self.ui.start_stop_button.text() == 'START':
+            SF.startAppTracker()
+            self.ui.start_stop_button.setText('STOP')
+        else:
+            SF.terminateAppTracker()
+            self.ui.start_stop_button.setText('START')
+
+
+    def toggleTheme(self):
+        # checks which theme is active (checks icon in the button?)
+        # if light -> set to dark
+        # if dark -> set to light
+        # should also change button hover/clicked stylesheets
+        # (if successful) -> toggle icon in button
+        return
 
     
     def deleteLimit(self):
@@ -185,7 +232,7 @@ class MainWindow(QMainWindow):
         # check if win is maximized
         if self.isMaximized() == False:
             # check if left mouse button is clicked
-            if e.buttons() == Qt.LeftButton:
+            if e.buttons() == QtCore.Qt.LeftButton:
                 #move win
                 self.move(self.pos() + e.globalPos() - self.clickPosition)
                 self.clickPosition = e.globalPos()
@@ -216,7 +263,7 @@ if __name__ == "__main__":
 
     data = db.fetchAppsByDate(today)
 
-    app = QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     window = MainWindow(data)
     window.show()
     sys.exit(app.exec_())

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>982</width>
+    <width>987</width>
     <height>727</height>
    </rect>
   </property>
@@ -584,8 +584,12 @@ font-weight: bold;</string>
                      <item alignment="Qt::AlignRight|Qt::AlignTop">
                       <widget class="QPushButton" name="refresh_chart_btn">
                        <property name="styleSheet">
-                        <string notr="true">:pressed {
-	background-color: rgb(172, 226, 255)
+                        <string notr="true">:hover {
+	background-color: rgb(48, 158, 255)
+}
+
+:pressed {
+	background-color: rgb(146, 188, 255)
 }</string>
                        </property>
                        <property name="text">
@@ -992,7 +996,7 @@ font-weight: bold;</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_12">
                  <item alignment="Qt::AlignTop">
-                  <widget class="QFrame" name="frame">
+                  <widget class="QFrame" name="setting1_fr">
                    <property name="styleSheet">
                     <string notr="true">background-color: rgba(220, 220, 220, 231);
 </string>
@@ -1005,7 +1009,7 @@ font-weight: bold;</string>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_14">
                     <item alignment="Qt::AlignHCenter">
-                     <widget class="QFrame" name="frame_4">
+                     <widget class="QFrame" name="setting1_labels_fr">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
@@ -1014,7 +1018,7 @@ font-weight: bold;</string>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_14">
                        <item>
-                        <widget class="QLabel" name="label_6">
+                        <widget class="QLabel" name="setting1_label">
                          <property name="styleSheet">
                           <string notr="true">font: bold;</string>
                          </property>
@@ -1027,7 +1031,7 @@ font-weight: bold;</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_7">
+                        <widget class="QLabel" name="setting1_desc_label">
                          <property name="text">
                           <string>description</string>
                          </property>
@@ -1040,7 +1044,7 @@ font-weight: bold;</string>
                      </widget>
                     </item>
                     <item alignment="Qt::AlignHCenter|Qt::AlignTop">
-                     <widget class="QFrame" name="frame_6">
+                     <widget class="QFrame" name="setting1_button_fr">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
@@ -1049,7 +1053,7 @@ font-weight: bold;</string>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_15">
                        <item>
-                        <widget class="QPushButton" name="pushButton">
+                        <widget class="QPushButton" name="run_on_startup_button">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                            <horstretch>0</horstretch>
@@ -1071,7 +1075,7 @@ QPushButton {
 }</string>
                          </property>
                          <property name="text">
-                          <string>DISABLED</string>
+                          <string>ENABLE</string>
                          </property>
                         </widget>
                        </item>
@@ -1082,7 +1086,7 @@ QPushButton {
                   </widget>
                  </item>
                  <item alignment="Qt::AlignTop">
-                  <widget class="QFrame" name="frame_3">
+                  <widget class="QFrame" name="setting2_fr">
                    <property name="styleSheet">
                     <string notr="true">background-color: rgba(220, 220, 220, 231);
 </string>
@@ -1095,7 +1099,7 @@ QPushButton {
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_17">
                     <item alignment="Qt::AlignHCenter">
-                     <widget class="QFrame" name="frame_5">
+                     <widget class="QFrame" name="setting2_labels_fr">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
@@ -1104,7 +1108,7 @@ QPushButton {
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_13">
                        <item>
-                        <widget class="QLabel" name="label_8">
+                        <widget class="QLabel" name="setting2_label">
                          <property name="styleSheet">
                           <string notr="true">font: bold;</string>
                          </property>
@@ -1117,7 +1121,7 @@ QPushButton {
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_9">
+                        <widget class="QLabel" name="setting2_desc_label">
                          <property name="text">
                           <string>description</string>
                          </property>
@@ -1130,7 +1134,7 @@ QPushButton {
                      </widget>
                     </item>
                     <item alignment="Qt::AlignHCenter|Qt::AlignTop">
-                     <widget class="QFrame" name="frame_7">
+                     <widget class="QFrame" name="setting2_button_fr">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
@@ -1139,7 +1143,7 @@ QPushButton {
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_16">
                        <item>
-                        <widget class="QPushButton" name="pushButton_2">
+                        <widget class="QPushButton" name="start_stop_button">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                            <horstretch>0</horstretch>
@@ -1172,7 +1176,7 @@ QPushButton {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QFrame" name="frame_8">
+                  <widget class="QFrame" name="setting3_fr">
                    <property name="styleSheet">
                     <string notr="true">background-color: rgba(220, 220, 220, 231);
 </string>
@@ -1185,7 +1189,7 @@ QPushButton {
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_9">
                     <item alignment="Qt::AlignHCenter">
-                     <widget class="QFrame" name="frame_9">
+                     <widget class="QFrame" name="setting3_labels_fr">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
@@ -1194,7 +1198,7 @@ QPushButton {
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_18">
                        <item>
-                        <widget class="QLabel" name="label_10">
+                        <widget class="QLabel" name="setting3_label">
                          <property name="styleSheet">
                           <string notr="true">font: bold;</string>
                          </property>
@@ -1207,7 +1211,7 @@ QPushButton {
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLabel" name="label_11">
+                        <widget class="QLabel" name="setting3_desc_label">
                          <property name="text">
                           <string>description (not necessary?)</string>
                          </property>
@@ -1220,7 +1224,7 @@ QPushButton {
                      </widget>
                     </item>
                     <item alignment="Qt::AlignHCenter|Qt::AlignTop">
-                     <widget class="QFrame" name="frame_10">
+                     <widget class="QFrame" name="setting3_button_fr">
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
                       </property>
@@ -1229,7 +1233,7 @@ QPushButton {
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_19">
                        <item>
-                        <widget class="QPushButton" name="pushButton_3">
+                        <widget class="QPushButton" name="theme_button">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                            <horstretch>0</horstretch>

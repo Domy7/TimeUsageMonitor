@@ -1,13 +1,22 @@
 import os
 import signal
 import subprocess
-from tracemalloc import start
+# from tracemalloc import start
 import win32com.client
+
+# provjerava je li .bat datoteku u startup folderu
+def checkRunOnStartup():
+    path = os.path.expanduser('~') + '\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\\run_app_tracker.bat.lnk'
+    return os.path.exists(path)     # TRUE ako .bat datoteka postoji u startup folderu
+
+# provjerava postoji li app_tracker proces kako se ne bi pokretao vise puta
+def checkIfProcessIsRunning():
+    return      # TRUE ako proces postoji
 
 # funkcija stavlja .bat datoteku u startup folder
 def enableRunOnStartup():
-    start_up_folder = os.path.expanduser('~') + '\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup' # apsolutna putanja do startup foldera trenutnog usera
-    path = os.path.join(start_up_folder, 'run_app_tracker.bat.lnk') # putanja i naziv shortcuta koji ce biti napravljen
+    path = os.path.expanduser('~') + '\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup' + '\\run_app_tracker.bat.lnk' # apsolutna putanja do startup foldera trenutnog usera
+    # path = os.path.join(start_up_folder, '\\run_app_tracker.bat.lnk') # putanja i naziv shortcuta koji ce biti napravljen
     target = os.path.dirname(__file__) + "\\run_app_tracker.bat" # putanja i naziv datoteke od koje radimo shortcut
 
     shell = win32com.client.Dispatch("WScript.Shell")
@@ -17,7 +26,7 @@ def enableRunOnStartup():
     shortcut.WindowStyle = 1 # 7 - Minimized, 3 - Maximized, 1 - Normal
     shortcut.save()
 
-    if os.path.isfile(start_up_folder + '\\run_app_tracker.bat.lnk'):
+    if os.path.isfile(path):
         print("Shortcut placed")
         return 1
 
@@ -49,8 +58,7 @@ def terminateAppTracker():
     else:
         return int(pid)
 
-# ne radi !!!!!!!!!!!!
+# funkcija starta process apptreackera ako postoji
 def startAppTracker():
-    os.startfile(os.path.dirname(__file__) + "\\run_app_tracker.bat")
-
-# startAppTracker()
+    path = os.path.dirname(__file__) + "\\run_app_tracker.bat"
+    subprocess.call([path])

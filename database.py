@@ -1,5 +1,4 @@
 import sqlite3
-from datetime import *
 
 #klasa za povezivanje s bazom podataka
 class Database(object):

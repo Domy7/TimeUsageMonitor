@@ -1,7 +1,5 @@
-from ui_gui import *
-
-from PySide2.QtGui import QPainter
-from PySide2.QtWidgets import *
+from PySide2 import QtCore, QtGui
+from PySide2.QtWidgets import QHBoxLayout
 from PySide2.QtCharts import QtCharts
 
 
@@ -61,7 +59,7 @@ class Chart():
             slice.setLabel(oldLabel + " - " + self.secondsToText(slice.value()))
 
         #iduce najvaznije prikaz samog grafa
-        self.chartview.setRenderHint(QPainter.Antialiasing)
+        self.chartview.setRenderHint(QtGui.QPainter.Antialiasing)
         
         #funkcija koja mi je davala najvise problema koliko kuzim odredivanje bordera
         #prvi parametar sirina grafa po x- osi suzi sa vecim brojevima

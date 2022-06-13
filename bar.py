@@ -1,14 +1,10 @@
-import sys, random
-from datetime import date
+from datetime import date, timedelta
 
-from ui_gui import *
-
-from PySide2.QtWidgets import *
+from PySide2 import QtCore, QtGui
+from PySide2.QtWidgets import QHBoxLayout
 from PySide2.QtCharts import QtCharts
-from PySide2.QtGui import QPainter, Qt
 
-from database import *
-import calendar
+from database import Database
 db = Database()
 
 class Bar():
@@ -69,7 +65,7 @@ class Bar():
         # self.chart.setPlotAreaBackgroundPen(QtGui.QPen(Qt.black))
         # self.chart.setPlotAreaBackgroundVisible()
 
-        self.chartview.setRenderHint(QPainter.Antialiasing)
+        self.chartview.setRenderHint(QtGui.QPainter.Antialiasing)
         # self.ui.weekly_bar_container.setContentsMargins(0, 0, 0, 0)
         self.lay.setContentsMargins(0, 0, 0, 0)
         self.lay.addWidget(self.chartview)

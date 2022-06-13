@@ -1,11 +1,10 @@
 from win32gui import GetForegroundWindow
-import win32gui
 import os
 import psutil
 import time as t
 import win32process
 from datetime import date
-from database import *
+from database import Database
 from win10toast import ToastNotifier
 
 
@@ -39,12 +38,9 @@ class appTracker():
                 currentApp = "explorer"
                 for proc in psutil.process_iter():
                     if proc.name() == currentApp + '.exe':
-                        # win32gui.SetActiveWindow(currentPID)
                         currentPID = proc.pid
-                        currTime = t.time()
                         file = open("exceptions.txt", "a")
                         file.write("EXCEPTION: PID = " + str(currentPID) + "\n")
-                        # file.write("at: " + str(currTime // 3600) + ":" + str((currTime % 3600) // 60) + "." + str(currTime %) + "\n\n")
                         file.write(t.asctime(t.localtime(t.time())) + "\n\n")
                         file.close()
 
