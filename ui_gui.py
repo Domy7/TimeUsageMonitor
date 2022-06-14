@@ -416,20 +416,54 @@ class Ui_MainWindow(object):
         self.lock_body_fr.setObjectName("lock_body_fr")
         self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.lock_body_fr)
         self.verticalLayout_10.setObjectName("verticalLayout_10")
-        self.new_limit_fr = QtWidgets.QFrame(self.lock_body_fr)
+        self.frame_3 = QtWidgets.QFrame(self.lock_body_fr)
+        self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_3.setObjectName("frame_3")
+        self.gridLayout_3 = QtWidgets.QGridLayout(self.frame_3)
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.limits_pass_input = QtWidgets.QLineEdit(self.frame_3)
+        self.limits_pass_input.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.limits_pass_input.setObjectName("limits_pass_input")
+        self.gridLayout_3.addWidget(self.limits_pass_input, 2, 0, 1, 1, QtCore.Qt.AlignRight)
+        self.frame = QtWidgets.QFrame(self.frame_3)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.horizontalLayout_18 = QtWidgets.QHBoxLayout(self.frame)
+        self.horizontalLayout_18.setObjectName("horizontalLayout_18")
+        self.label = QtWidgets.QLabel(self.frame)
+        self.label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label.setObjectName("label")
+        self.horizontalLayout_18.addWidget(self.label)
+        self.choose_app = QtWidgets.QComboBox(self.frame)
+        self.choose_app.setPlaceholderText("")
+        self.choose_app.setObjectName("choose_app")
+        self.horizontalLayout_18.addWidget(self.choose_app)
+        self.gridLayout_3.addWidget(self.frame, 1, 0, 1, 1)
+        self.submit_limit = QtWidgets.QPushButton(self.frame_3)
+        self.submit_limit.setMinimumSize(QtCore.QSize(40, 0))
+        self.submit_limit.setStyleSheet(":hover {\n"
+"    color: rgb(246, 238, 255);\n"
+"    background-color: rgb(48, 158, 255);\n"
+"}\n"
+"\n"
+":pressed {\n"
+"    background-color: rgb(146, 188, 255);\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    font: 10pt;\n"
+"}")
+        self.submit_limit.setObjectName("submit_limit")
+        self.gridLayout_3.addWidget(self.submit_limit, 2, 1, 1, 1, QtCore.Qt.AlignLeft)
+        self.new_limit_fr = QtWidgets.QFrame(self.frame_3)
         self.new_limit_fr.setStyleSheet("")
         self.new_limit_fr.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.new_limit_fr.setFrameShadow(QtWidgets.QFrame.Raised)
         self.new_limit_fr.setObjectName("new_limit_fr")
         self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.new_limit_fr)
         self.horizontalLayout_12.setObjectName("horizontalLayout_12")
-        self.label = QtWidgets.QLabel(self.new_limit_fr)
-        self.label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.label.setObjectName("label")
-        self.horizontalLayout_12.addWidget(self.label)
-        self.choose_app = QtWidgets.QComboBox(self.new_limit_fr)
-        self.choose_app.setObjectName("choose_app")
-        self.horizontalLayout_12.addWidget(self.choose_app)
         self.label_2 = QtWidgets.QLabel(self.new_limit_fr)
         self.label_2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label_2.setObjectName("label_2")
@@ -466,23 +500,8 @@ class Ui_MainWindow(object):
         self.label_4.setSizePolicy(sizePolicy)
         self.label_4.setObjectName("label_4")
         self.horizontalLayout_12.addWidget(self.label_4)
-        self.submit_limit = QtWidgets.QPushButton(self.new_limit_fr)
-        self.submit_limit.setMinimumSize(QtCore.QSize(40, 0))
-        self.submit_limit.setStyleSheet(":hover {\n"
-"    color: rgb(246, 238, 255);\n"
-"    background-color: rgb(48, 158, 255);\n"
-"}\n"
-"\n"
-":pressed {\n"
-"    background-color: rgb(146, 188, 255);\n"
-"}\n"
-"\n"
-"QPushButton {\n"
-"    font: 10pt;\n"
-"}")
-        self.submit_limit.setObjectName("submit_limit")
-        self.horizontalLayout_12.addWidget(self.submit_limit, 0, QtCore.Qt.AlignRight)
-        self.verticalLayout_10.addWidget(self.new_limit_fr, 0, QtCore.Qt.AlignTop)
+        self.gridLayout_3.addWidget(self.new_limit_fr, 1, 1, 1, 1, QtCore.Qt.AlignLeft)
+        self.verticalLayout_10.addWidget(self.frame_3)
         self.existing_limits_fr = QtWidgets.QFrame(self.lock_body_fr)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -504,7 +523,21 @@ class Ui_MainWindow(object):
 "")
         self.limits_list.setObjectName("limits_list")
         self.verticalLayout_11.addWidget(self.limits_list)
-        self.del_selected_limit = QtWidgets.QPushButton(self.existing_limits_fr)
+        self.frame_4 = QtWidgets.QFrame(self.existing_limits_fr)
+        self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_4.setObjectName("frame_4")
+        self.horizontalLayout_19 = QtWidgets.QHBoxLayout(self.frame_4)
+        self.horizontalLayout_19.setObjectName("horizontalLayout_19")
+        self.del_limit_pass_input = QtWidgets.QLineEdit(self.frame_4)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.del_limit_pass_input.sizePolicy().hasHeightForWidth())
+        self.del_limit_pass_input.setSizePolicy(sizePolicy)
+        self.del_limit_pass_input.setObjectName("del_limit_pass_input")
+        self.horizontalLayout_19.addWidget(self.del_limit_pass_input, 0, QtCore.Qt.AlignRight)
+        self.del_selected_limit = QtWidgets.QPushButton(self.frame_4)
         self.del_selected_limit.setStyleSheet(":hover {\n"
 "    color: rgb(246, 238, 255);\n"
 "    background-color: rgb(48, 158, 255);\n"
@@ -518,7 +551,8 @@ class Ui_MainWindow(object):
 "    font: 10pt;\n"
 "}")
         self.del_selected_limit.setObjectName("del_selected_limit")
-        self.verticalLayout_11.addWidget(self.del_selected_limit, 0, QtCore.Qt.AlignRight)
+        self.horizontalLayout_19.addWidget(self.del_selected_limit, 0, QtCore.Qt.AlignRight)
+        self.verticalLayout_11.addWidget(self.frame_4, 0, QtCore.Qt.AlignRight)
         self.verticalLayout_10.addWidget(self.existing_limits_fr)
         self.verticalLayout_4.addWidget(self.lock_body_fr)
         self.centralWidget.addWidget(self.lock_page)
@@ -868,7 +902,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.centralWidget.setCurrentIndex(2)
+        self.centralWidget.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -884,12 +918,14 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.daily_chart_tab), _translate("MainWindow", "Daily Chart"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.weekly_chart_tab), _translate("MainWindow", "Weekly Chart"))
         self.lock_title_lbl.setText(_translate("MainWindow", "Limits"))
+        self.limits_pass_input.setPlaceholderText(_translate("MainWindow", "Enter password"))
         self.label.setText(_translate("MainWindow", "Choose an app:"))
+        self.submit_limit.setText(_translate("MainWindow", "DONE"))
         self.label_2.setText(_translate("MainWindow", "Set the time:"))
         self.label_3.setText(_translate("MainWindow", "h"))
         self.label_4.setText(_translate("MainWindow", "m"))
-        self.submit_limit.setText(_translate("MainWindow", "DONE"))
         self.label_5.setText(_translate("MainWindow", "  Your limits:"))
+        self.del_limit_pass_input.setPlaceholderText(_translate("MainWindow", "Enter password"))
         self.del_selected_limit.setText(_translate("MainWindow", "DELETE SELECTED LIMIT"))
         self.settings_title_lbl.setText(_translate("MainWindow", "Settings"))
         self.setting1_label.setText(_translate("MainWindow", "Run app timer on startup"))
@@ -899,7 +935,7 @@ class Ui_MainWindow(object):
         self.setting2_desc_label.setText(_translate("MainWindow", "description"))
         self.start_stop_button.setText(_translate("MainWindow", "START"))
         self.setting3_label.setText(_translate("MainWindow", "Set/Delete or change password"))
-        self.setting3_desc_label.setText(_translate("MainWindow", "Type in your old password for deleting/changing"))
+        self.setting3_desc_label.setText(_translate("MainWindow", "Enter your old password for deleting/changing"))
         self.set_del_button.setText(_translate("MainWindow", "SET"))
         self.change_button.setText(_translate("MainWindow", "CHANGE"))
         self.new_pass_input.setPlaceholderText(_translate("MainWindow", "new password"))

@@ -195,11 +195,16 @@ class MainWindow(QtWidgets.QMainWindow):
     
     def deleteLimit(self):
         
-        index = self.ui.limits_list.currentRow()
-        if index < 0: return        # limits_list is empty
-        item = self.ui.limits_list.takeItem(index)      # deletes limit from gui and gets selected QListWidgetItem
-        app = QtWidgets.QListWidgetItem.text(item).partition('\t')[0]       # extracts name of the app from selected (QListWidgetItem) limit
-        self.removeLimit(app)
+        if(PL.checkIfPassExists() and PL.checkIfPassCorrect(self.ui.del_limit_pass_input.text())):
+            index = self.ui.limits_list.currentRow()
+            if index < 0: return        # limits_list is empty
+            item = self.ui.limits_list.takeItem(index)      # deletes limit from gui and gets selected QListWidgetItem
+            app = QtWidgets.QListWidgetItem.text(item).partition('\t')[0]       # extracts name of the app from selected (QListWidgetItem) limit
+            self.removeLimit(app)
+        else:
+            print('Incorrect password, or it doesn\'t exist!')
+        
+        self.ui.del_limit_pass_input.setText('')
 
 
     def removeLimit(self, tmpApp):
@@ -208,6 +213,17 @@ class MainWindow(QtWidgets.QMainWindow):
 
     
     def submitLimit(self):
+
+        if(PL.checkIfPassExists() and PL.checkIfPassCorrect(self.ui.limits_pass_input.text()) == 0):
+            print('Incorrect password!')
+            self.ui.limits_pass_input.setText('')
+            return
+        elif(PL.checkIfPassExists() == 0):
+            print('Password doesn\'t exist!')
+            self.ui.limits_pass_input.setText('')
+            return
+        
+        self.ui.limits_pass_input.setText('')
 
         tmpApp = ""
         tmpTime = 0
