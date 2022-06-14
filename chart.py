@@ -17,14 +17,16 @@ class Chart():
 
         self.createPieChart(data)
 
-    def secondsToText(self, secs):
-        days = secs//86400
-        hours = (secs - days*86400)//3600
-        minutes = (secs - days*86400 - hours*3600)//60
-        seconds = secs - days*86400 - hours*3600 - minutes*60
+    @staticmethod
+    def secondsToText(secs):
+        hours = secs // 3600
+        minutes = (secs % 3600) // 60
+        seconds = (secs % 3600) % 60
+
         result = ("{} h, ".format(hours) if hours else "") + \
         ("{0:.0f} min, ".format(minutes) if minutes else "") + \
-        ("{0:.0f} s ".format(seconds) if seconds else "")
+        ("{0:.0f} s, ".format(seconds) if seconds else "")
+        result = result[:len(result)-2]
         return result
 
     def createPieChart(self, data):
