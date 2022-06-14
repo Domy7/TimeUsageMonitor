@@ -1,7 +1,6 @@
 import os
 import signal
 import subprocess
-# from tracemalloc import start
 import win32com.client
 import psutil
 
@@ -24,7 +23,6 @@ def checkIfProcessIsRunning():
 # funkcija stavlja .bat datoteku u startup folder
 def enableRunOnStartup():
     path = os.path.expanduser('~') + '\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup' + '\\run_app_tracker.bat.lnk' # apsolutna putanja do startup foldera trenutnog usera
-    # path = os.path.join(start_up_folder, '\\run_app_tracker.bat.lnk') # putanja i naziv shortcuta koji ce biti napravljen
     target = os.path.dirname(__file__) + "\\run_app_tracker.bat" # putanja i naziv datoteke od koje radimo shortcut
 
     shell = win32com.client.Dispatch("WScript.Shell")

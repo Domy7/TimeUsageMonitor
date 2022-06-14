@@ -36,13 +36,6 @@ class appTracker():
             except:
                 print("EXCEPTION: PID = " + str(currentPID))
                 currentApp = "explorer"
-                for proc in psutil.process_iter():
-                    if proc.name() == currentApp + '.exe':
-                        currentPID = proc.pid
-                        file = open("exceptions.txt", "a")
-                        file.write("EXCEPTION: PID = " + str(currentPID) + "\n")
-                        file.write(t.asctime(t.localtime(t.time())) + "\n\n")
-                        file.close()
 
             self.timeStamp[currentApp] = int(t.time())
             t.sleep(1)
