@@ -12,7 +12,14 @@ def checkRunOnStartup():
 
 # provjerava postoji li app_tracker proces kako se ne bi pokretao vise puta
 def checkIfProcessIsRunning():
-    return      # TRUE ako proces postoji
+    path = os.path.dirname(__file__) + "\process.log"
+    f = open(path, "r")
+    pid = int(f.read().strip("last PID: "))
+
+    if psutil.pid_exists(pid) and psutil.Process(pid).name() == 'pythonw.exe':
+        print("A process %s with pid %d exists" % (psutil.Process(pid).name(), pid))
+        return True
+    return False
 
 # funkcija stavlja .bat datoteku u startup folder
 def enableRunOnStartup():
@@ -60,14 +67,6 @@ def terminateAppTracker():
 
 # funkcija starta process apptreackera ako postoji
 def startAppTracker():
-    path = os.path.dirname(__file__) + "\process.log"
-    f = open(path, "r")
-    pid = int(f.read().strip("last PID: "))
-
-    if psutil.pid_exists(pid) and psutil.Process(pid).name() == 'pythonw.exe':
-        print("A process %s with pid %d exists" % (psutil.Process(pid).name(), pid))
-        return -1
-
     path = os.path.dirname(__file__) + "\\run_app_tracker.bat"
     subprocess.call([path])
     print('Starting appTracker...')
