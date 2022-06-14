@@ -23,7 +23,6 @@ def createPass(pswd):       # -1 - pass already exists
     hashedPswd = bcrypt.hashpw(pswd, bcrypt.gensalt(10))
 
     path = os.path.dirname(__file__) + '\pass.log'
-
     f = open(path, 'w')
     f.write(hashedPswd)
     f.close()
@@ -41,7 +40,6 @@ def deletePass():           # -1 - pass doesn't exist
         return -1
     
     path = os.path.dirname(__file__) + '\pass.log'
-
     open(path, 'w').close()     # 'w' automatically deletes folders contents
 
 
@@ -50,7 +48,6 @@ def checkIfPassCorrect(pswd):   # -1 - pass doesn't exist, 0 - incorrect, 1 - co
         return -1
     
     path = os.path.dirname(__file__) + '\pass.log'
-
     f = open(path, 'r')
     hashedPswd = f.read()
     f.close()

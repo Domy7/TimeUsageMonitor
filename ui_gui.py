@@ -706,15 +706,15 @@ class Ui_MainWindow(object):
         self.setting3_button_fr.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.setting3_button_fr.setFrameShadow(QtWidgets.QFrame.Raised)
         self.setting3_button_fr.setObjectName("setting3_button_fr")
-        self.verticalLayout_19 = QtWidgets.QVBoxLayout(self.setting3_button_fr)
-        self.verticalLayout_19.setObjectName("verticalLayout_19")
-        self.theme_button = QtWidgets.QPushButton(self.setting3_button_fr)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.setting3_button_fr)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.set_del_button = QtWidgets.QPushButton(self.setting3_button_fr)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.theme_button.sizePolicy().hasHeightForWidth())
-        self.theme_button.setSizePolicy(sizePolicy)
-        self.theme_button.setStyleSheet(":hover {\n"
+        sizePolicy.setHeightForWidth(self.set_del_button.sizePolicy().hasHeightForWidth())
+        self.set_del_button.setSizePolicy(sizePolicy)
+        self.set_del_button.setStyleSheet(":hover {\n"
 "    color: rgb(246, 238, 255);\n"
 "    background-color: rgb(48, 158, 255);\n"
 "}\n"
@@ -726,8 +726,38 @@ class Ui_MainWindow(object):
 "QPushButton {\n"
 "    font: 10pt;\n"
 "}")
-        self.theme_button.setObjectName("theme_button")
-        self.verticalLayout_19.addWidget(self.theme_button)
+        self.set_del_button.setObjectName("set_del_button")
+        self.gridLayout_2.addWidget(self.set_del_button, 0, 0, 1, 1)
+        self.change_button = QtWidgets.QPushButton(self.setting3_button_fr)
+        self.change_button.setStyleSheet(":hover {\n"
+"    color: rgb(246, 238, 255);\n"
+"    background-color: rgb(48, 158, 255);\n"
+"}\n"
+"\n"
+":pressed {\n"
+"    background-color: rgb(146, 188, 255);\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    font: 10pt;\n"
+"}")
+        self.change_button.setObjectName("change_button")
+        self.gridLayout_2.addWidget(self.change_button, 0, 1, 1, 1)
+        self.new_pass_input = QtWidgets.QLineEdit(self.setting3_button_fr)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.new_pass_input.sizePolicy().hasHeightForWidth())
+        self.new_pass_input.setSizePolicy(sizePolicy)
+        self.new_pass_input.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.new_pass_input.setText("")
+        self.new_pass_input.setObjectName("new_pass_input")
+        self.gridLayout_2.addWidget(self.new_pass_input, 1, 0, 1, 1)
+        self.old_pass_input = QtWidgets.QLineEdit(self.setting3_button_fr)
+        self.old_pass_input.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.old_pass_input.setText("")
+        self.old_pass_input.setObjectName("old_pass_input")
+        self.gridLayout_2.addWidget(self.old_pass_input, 1, 1, 1, 1)
         self.horizontalLayout_9.addWidget(self.setting3_button_fr, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.verticalLayout_12.addWidget(self.setting3_fr)
         spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
@@ -838,7 +868,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.centralWidget.setCurrentIndex(0)
+        self.centralWidget.setCurrentIndex(2)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -868,9 +898,12 @@ class Ui_MainWindow(object):
         self.setting2_label.setText(_translate("MainWindow", "Start/Stop app timer"))
         self.setting2_desc_label.setText(_translate("MainWindow", "description"))
         self.start_stop_button.setText(_translate("MainWindow", "START"))
-        self.setting3_label.setText(_translate("MainWindow", "Dark/Light mode"))
-        self.setting3_desc_label.setText(_translate("MainWindow", "description (not necessary?)"))
-        self.theme_button.setText(_translate("MainWindow", "moon.svg / sun.svg"))
+        self.setting3_label.setText(_translate("MainWindow", "Set/Delete or change password"))
+        self.setting3_desc_label.setText(_translate("MainWindow", "Type in your old password for deleting/changing"))
+        self.set_del_button.setText(_translate("MainWindow", "SET"))
+        self.change_button.setText(_translate("MainWindow", "CHANGE"))
+        self.new_pass_input.setPlaceholderText(_translate("MainWindow", "new password"))
+        self.old_pass_input.setPlaceholderText(_translate("MainWindow", "old password"))
         self.data_title_lbl.setText(_translate("MainWindow", "Data"))
         self.version_lbl.setText(_translate("MainWindow", "Version 1.0"))
         self.question_btn.setText(_translate("MainWindow", "?"))

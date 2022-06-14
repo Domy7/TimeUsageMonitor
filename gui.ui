@@ -1203,7 +1203,7 @@ QPushButton {
                           <string notr="true">font: bold;</string>
                          </property>
                          <property name="text">
-                          <string>Dark/Light mode</string>
+                          <string>Set/Delete or change password</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
@@ -1213,7 +1213,7 @@ QPushButton {
                        <item>
                         <widget class="QLabel" name="setting3_desc_label">
                          <property name="text">
-                          <string>description (not necessary?)</string>
+                          <string>Type in your old password for deleting/changing</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
@@ -1231,11 +1231,11 @@ QPushButton {
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_19">
-                       <item>
-                        <widget class="QPushButton" name="theme_button">
+                      <layout class="QGridLayout" name="gridLayout_2">
+                       <item row="0" column="0">
+                        <widget class="QPushButton" name="set_del_button">
                          <property name="sizePolicy">
-                          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                            <horstretch>0</horstretch>
                            <verstretch>0</verstretch>
                           </sizepolicy>
@@ -1255,7 +1255,60 @@ QPushButton {
 }</string>
                          </property>
                          <property name="text">
-                          <string>moon.svg / sun.svg</string>
+                          <string>SET</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="1">
+                        <widget class="QPushButton" name="change_button">
+                         <property name="styleSheet">
+                          <string notr="true">:hover {
+	color: rgb(246, 238, 255);
+	background-color: rgb(48, 158, 255);
+}
+
+:pressed {
+	background-color: rgb(146, 188, 255);
+}
+
+QPushButton {
+	font: 10pt;
+}</string>
+                         </property>
+                         <property name="text">
+                          <string>CHANGE</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLineEdit" name="new_pass_input">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="placeholderText">
+                          <string>new password</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="1">
+                        <widget class="QLineEdit" name="old_pass_input">
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="placeholderText">
+                          <string>old password</string>
                          </property>
                         </widget>
                        </item>
