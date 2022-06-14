@@ -12,6 +12,7 @@ import bar
 import chart
 import database
 # import icons_rc
+import password_lock as PL
 import settings_functions as SF
 import ui_gui
 
@@ -71,6 +72,10 @@ class MainWindow(QtWidgets.QMainWindow):
         if SF.checkIfProcessIsRunning():
             self.ui.start_stop_button.setText('STOP')
 
+        # inits text of set_del_button to 'DELETE' in case the password already exists
+        if PL.checkIfPassExists():
+            self.ui.set_del_button.setText('DELETE')
+
         # load stylesheet, overrides fonts set in QTdesigner
         apply_stylesheet(app, theme='light_blue.xml')
         
@@ -116,20 +121,52 @@ class MainWindow(QtWidgets.QMainWindow):
         # TODO: opens menu
         #self.ui.menu_btn.clicked.connect(lambda: self.openMenu())
 
-        # buttonis for submitting and deleting limits
+        # buttons for submitting and deleting limits
         self.ui.submit_limit.clicked.connect(lambda: self.submitLimit())
         self.ui.del_selected_limit.clicked.connect(lambda: self.deleteLimit())
 
+        # setttings buttons
         self.ui.run_on_startup_button.clicked.connect(lambda: self.runOnStartup())
         self.ui.start_stop_button.clicked.connect(lambda: self.startStopScript())
-        self.ui.theme_button.clicked.connect(lambda: self.toggleTheme())
+        # self.ui.theme_button.clicked.connect(lambda: self.toggleTheme())
+
+        # password buttons
+        self.ui.set_del_button.clicked.connect(lambda: self.setDelPassword())
+        self.ui.change_button.clicked.connect(lambda: self.changePassword())
+
+
+    def setDelPassword(self):
+        if PL.checkIfPassExists():      # exists -> delete
+            if PL.checkIfPassCorrect(self.ui.old_pass_input.text()) == 0:
+                print('incorrect password')
+                # add message to user in GUI
+                return
+            
+            if PL.deletePass():
+                self.ui.set_del_button.setText('SET')
+        else:                           # doesn't exist -> create
+            if len(self.ui.new_pass_input.text()) > 3:
+                if PL.createPass(self.ui.new_pass_input.text()):
+                    self.ui.set_del_button.setText('DELETE')
+        
+        self.ui.new_pass_input.setText('')
+        self.ui.old_pass_input.setText('')
+    
+
+    def changePassword(self):
+        if PL.checkIfPassExists():      # exists -> change
+            if PL.checkIfPassCorrect(self.ui.old_pass_input.text()) == 0:
+                print('incorrect password')
+                # add message to user in GUI
+                return
+
+            PL.createPass(self.ui.new_pass_input.text())
+        
+        self.ui.new_pass_input.setText('')
+        self.ui.old_pass_input.setText('')
 
 
     def runOnStartup(self):
-        # checks if the option is currently enabled or disabled (checks text in the button?)
-        # if disabled -> call function to enable it (also start it immediately?)
-        # if it is enabled -> call function to disable it
-        # (if successful) toggle text in button
         if self.ui.run_on_startup_button.text() == 'ENABLE':
             SF.enableRunOnStartup()
             self.ui.run_on_startup_button.setText('DISABLE')
@@ -139,10 +176,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
     def startStopScript(self):
-        # checks if script is already running (checks text in the button?)
-        # if it is running -> call function to terminate it
-        # if it isn't running -> call function to start it
-        # (if successful) -> toggle text in button
         if self.ui.start_stop_button.text() == 'START':
             SF.startAppTracker()
             self.ui.start_stop_button.setText('STOP')
@@ -162,11 +195,16 @@ class MainWindow(QtWidgets.QMainWindow):
     
     def deleteLimit(self):
         
-        index = self.ui.limits_list.currentRow()
-        if index < 0: return        # limits_list is empty
-        item = self.ui.limits_list.takeItem(index)      # deletes limit from gui and gets selected QListWidgetItem
-        app = QtWidgets.QListWidgetItem.text(item).partition('\t')[0]       # extracts name of the app from selected (QListWidgetItem) limit
-        self.removeLimit(app)
+        if(PL.checkIfPassExists() and PL.checkIfPassCorrect(self.ui.del_limit_pass_input.text())):
+            index = self.ui.limits_list.currentRow()
+            if index < 0: return        # limits_list is empty
+            item = self.ui.limits_list.takeItem(index)      # deletes limit from gui and gets selected QListWidgetItem
+            app = QtWidgets.QListWidgetItem.text(item).partition('\t')[0]       # extracts name of the app from selected (QListWidgetItem) limit
+            self.removeLimit(app)
+        else:
+            print('Incorrect password, or it doesn\'t exist!')
+        
+        self.ui.del_limit_pass_input.setText('')
 
 
     def removeLimit(self, tmpApp):
@@ -175,6 +213,17 @@ class MainWindow(QtWidgets.QMainWindow):
 
     
     def submitLimit(self):
+
+        if(PL.checkIfPassExists() and PL.checkIfPassCorrect(self.ui.limits_pass_input.text()) == 0):
+            print('Incorrect password!')
+            self.ui.limits_pass_input.setText('')
+            return
+        elif(PL.checkIfPassExists() == 0):
+            print('Password doesn\'t exist!')
+            self.ui.limits_pass_input.setText('')
+            return
+        
+        self.ui.limits_pass_input.setText('')
 
         tmpApp = ""
         tmpTime = 0
