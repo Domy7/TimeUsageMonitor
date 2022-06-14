@@ -3,6 +3,7 @@ import signal
 import subprocess
 # from tracemalloc import start
 import win32com.client
+import psutil
 
 # provjerava je li .bat datoteku u startup folderu
 def checkRunOnStartup():
@@ -49,16 +50,24 @@ def disableRunOnStartup():
 def terminateAppTracker():
     path = os.path.dirname(__file__) + "\process.log"
     f = open(path, "r")
-    pid = f.read().strip("last PID: ")
+    pid = int(f.read().strip("last PID: "))
     
-    try:
+    if psutil.pid_exists(pid) and psutil.Process(pid).name() == 'pythonw.exe':
         os.kill(int(pid), signal.SIGTERM)
-    except OSError:
-        return -1
+        print ("Process terminated")
     else:
-        return int(pid)
+        print('Process doesnt exist')
 
 # funkcija starta process apptreackera ako postoji
 def startAppTracker():
+    path = os.path.dirname(__file__) + "\process.log"
+    f = open(path, "r")
+    pid = int(f.read().strip("last PID: "))
+
+    if psutil.pid_exists(pid) and psutil.Process(pid).name() == 'pythonw.exe':
+        print("A process %s with pid %d exists" % (psutil.Process(pid).name(), pid))
+        return -1
+
     path = os.path.dirname(__file__) + "\\run_app_tracker.bat"
     subprocess.call([path])
+    print('Starting appTracker...')
