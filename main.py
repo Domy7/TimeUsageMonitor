@@ -135,12 +135,35 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.change_button.clicked.connect(lambda: self.changePassword())
 
 
-    def setDelPassword():
-        return
+    def setDelPassword(self):
+        if PL.checkIfPassExists():      # exists -> delete
+            if PL.checkIfPassCorrect(self.ui.old_pass_input.text()) == 0:
+                print('incorrect password')
+                # add message to user in GUI
+                return
+            
+            if PL.deletePass():
+                self.ui.set_del_button.setText('SET')
+        else:                           # doesn't exist -> create
+            if len(self.ui.new_pass_input.text()) > 3:
+                if PL.createPass(self.ui.new_pass_input.text()):
+                    self.ui.set_del_button.setText('DELETE')
+        
+        self.ui.new_pass_input.setText('')
+        self.ui.old_pass_input.setText('')
     
 
-    def changePassword():
-        return
+    def changePassword(self):
+        if PL.checkIfPassExists():      # exists -> change
+            if PL.checkIfPassCorrect(self.ui.old_pass_input.text()) == 0:
+                print('incorrect password')
+                # add message to user in GUI
+                return
+
+            PL.createPass(self.ui.new_pass_input.text())
+        
+        self.ui.new_pass_input.setText('')
+        self.ui.old_pass_input.setText('')
 
 
     def runOnStartup(self):
