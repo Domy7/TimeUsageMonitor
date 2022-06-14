@@ -1,10 +1,9 @@
 
 data.db
 __pycache__
-process.log
+*.log
 dist
 build
 pie.ico
 Time Usage Monitor.exe
 main.spec
-exceptions.txt
