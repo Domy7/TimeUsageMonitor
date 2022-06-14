@@ -1,29 +1,44 @@
 from win32gui import GetForegroundWindow
 import os
 import psutil
-import time
+import time as t
 import win32process
 from datetime import date
-from database import *
+from database import Database
+from win10toast import ToastNotifier
+
+
 
 class appTracker():
     processTime = {}
     timeStamp = {}
     
-    blacklist = ['explorer', 'python', 'Time Usage Monitor']
+    blacklist = ['explorer', 'python', 'Time Usage Monitor', 'SearchHost', 'ShellExperienceHost', 'LockApp', 'SafeTips', 'ApplicationFrameHost', 'ScpTrayApp', 'System Idle Process']
 
     db = Database()
-    db.createTable()
     today = str(date.today())
+    notification = ToastNotifier()
+    ALERT_BEFORE = 1
 
     def __init__(self):
 
-        initialTime = time.time()
+        initialTime = t.time()
         while True:
-            currentApp = psutil.Process(win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]).name().replace(".exe", "")
 
-            self.timeStamp[currentApp] = int(time.time())
-            time.sleep(1)
+            currentPID = win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]
+            # print(type(pidCheck))
+            while currentPID < 0 and currentPID > 4194304:
+                currentPID = win32process.GetWindowThreadProcessId(GetForegroundWindow())[1]
+                print("ERROR")
+
+            try:
+                currentApp = psutil.Process(currentPID).name().replace(".exe", "")
+            except:
+                print("EXCEPTION: PID = " + str(currentPID))
+                currentApp = "explorer"
+
+            self.timeStamp[currentApp] = int(t.time())
+            t.sleep(1)
             
             #gledamo ako je trenutna apk prvi put otvorena stavi vrijeme koristenja na 0
             if currentApp not in self.processTime.keys():
@@ -31,16 +46,16 @@ class appTracker():
                 
             #odnosno ako nije povecaj vrijeme kao:
             #ukupnoVr + trenutnoVr - vrijeme kada je otvorena apk zapisno u timestampu    
-            self.processTime[currentApp] = self.processTime[currentApp]+int(time.time())-self.timeStamp[currentApp]
+            self.processTime[currentApp] = self.processTime[currentApp]+int(t.time())-self.timeStamp[currentApp]
             
             #svakih 5 sekundi spremi podatke u bazu  
-            if time.time() - initialTime > 5:
+            if t.time() - initialTime > 5:
                 self.saveToDatabase()
-                initialTime = time.time()
+                initialTime = t.time()
                 self.processTime = {}
             
-            
-            print(self.processTime)       
+            print(self.processTime)
+
 
     def saveToDatabase(self):
         
@@ -49,8 +64,35 @@ class appTracker():
             if not openApp in self.blacklist:
                 if result:
                     self.db.updateAppUsage(result[2] + self.processTime[openApp], self.today, openApp)
+                    self.checkLimit(openApp, result[2])
+
+
                 else:
                     self.db.insertApp(self.processTime[openApp], self.today, openApp)
+
+    def checkLimit(self, currentApp, prcTime):
+        limits = self.db.fetchLimits()
+        for limit in limits:
+            if limit[0] == currentApp:
+                if limit[1] <= prcTime:
+                    self.notification.show_toast(
+                        "Time Usage Monitor",
+                        "Prešli ste limit korištenja aplikacije {}. Aplikacija blokirana.".format(limit[0].capitalize()),
+                        duration = 6,
+                        threaded = True,
+                    )
+                    PROCNAME = currentApp + ".exe"
+                    for proc in psutil.process_iter():
+                        if proc.name() == PROCNAME:
+                            proc.kill()
+                print (int(limit[1]) - int(prcTime))
+                if int(limit[1]) - int(prcTime) <= int(self.ALERT_BEFORE * 60 + 3) and int(limit[1]) - int(prcTime) >= int(self.ALERT_BEFORE * 60 - 3):
+                    self.notification.show_toast(
+                        "Time Usage Monitor",
+                        "Preostalo je manje od {} min. korištenja aplikacije {}.".format(self.ALERT_BEFORE, limit[0].capitalize()),
+                        duration = 6,
+                        threaded = True,
+                    )
 
 if __name__ == "__main__":
 
@@ -59,8 +101,3 @@ if __name__ == "__main__":
     file.close()
     
     appTracker()
-
-
-
-
-

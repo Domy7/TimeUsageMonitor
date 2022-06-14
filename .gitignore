@@ -2,3 +2,9 @@
 data.db
 __pycache__
 process.log
+dist
+build
+pie.ico
+Time Usage Monitor.exe
+main.spec
+exceptions.txt

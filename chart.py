@@ -1,7 +1,5 @@
-from ui_gui import *
-
-from PySide2.QtGui import QPainter
-from PySide2.QtWidgets import *
+from PySide2 import QtCore, QtGui
+from PySide2.QtWidgets import QHBoxLayout
 from PySide2.QtCharts import QtCharts
 
 
@@ -33,15 +31,16 @@ class Chart():
 
         self.data = data
 
-        self.chart.removeSeries(self.series)
+        # za refresh
+        self.chart.removeAllSeries()
         self.series = QtCharts.QPieSeries()
 
         for app in self.data:
-            #print(app)
             self.series.append(str(app[1]).title(), app[2])
 
         #glavna stvar nakon sto su dodani podaci kreiranje samog grafa
         self.chart.addSeries(self.series)
+        self.chart.setTitle('Today usage')
 
         #animacije, koje osi se vide sitnice
         self.chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
@@ -49,6 +48,8 @@ class Chart():
         self.chart.legend().setVisible(True)
         self.chart.legend().setAlignment(QtCore.Qt.AlignRight)
         self.chart.legend().setFont(QtGui.QFont("25"))
+
+        # boja pozadine
         self.chart.setBackgroundBrush(QtGui.QBrush("transparent"))
 
         self.series.setLabelsVisible()
@@ -58,13 +59,13 @@ class Chart():
             slice.setLabel(oldLabel + " - " + self.secondsToText(slice.value()))
 
         #iduce najvaznije prikaz samog grafa
-        self.chartview.setRenderHint(QPainter.Antialiasing)
+        self.chartview.setRenderHint(QtGui.QPainter.Antialiasing)
         
         #funkcija koja mi je davala najvise problema koliko kuzim odredivanje bordera
         #prvi parametar sirina grafa po x- osi suzi sa vecim brojevima
         #drugi parametar visina grafa po y- osi smanji sa vecim brojevima
         #treci i cetvrti izgledaju kao da rade istu stvar kao 1. i 2. ne znam 
-        self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
+        # self.ui.chart_container.setContentsMargins(0, 0, 0, 0)
                 
         #ovo valjda polozi onda graf na kraju na to mjesto
         self.lay.setContentsMargins(0, 0, 0, 0)
