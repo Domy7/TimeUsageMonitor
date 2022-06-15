@@ -8,5 +8,4 @@ jobs:
     steps:
       - uses: delivery-much/actions-assigner@v1
         with:
-          token: ${{ secrets.GH_TOKEN }}
-          team-reviewers: Domy7,lukaillich,UnbuttonedHennessy,antoniojuricic
+          reviewers: Domy7,lukaillich,UnbuttonedHennessy,antoniojuricic
