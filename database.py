@@ -42,29 +42,33 @@ class Database(object):
     def insertApp(self, time, date, app):
         self.execute('''INSERT INTO usage(date,app,time) VALUES (?,?,?)''', (date, app, time))
         self.commit()
-
+    
+    #spremanje limita
     def saveLimit(self, app, time):
         time *= 60
         self.execute('''INSERT INTO limits(app, time) VALUES(?,?)''', (app, time))
         self.commit()
 
+    #azuriranje limita
     def updateLimit(self, app, time):
         time *= 60
         self.execute('''UPDATE limits SET time=? WHERE app=?''', (time, app))
         self.commit()
 
+    #uklanjanje limita
     def removeLimit(self, app):
         self.execute('''DELETE FROM limits WHERE app=?''', (app,))
         self.commit()
 
+    #dohvacanje limita
     def fetchLimits(self):
         self.execute('''SELECT * FROM limits''')
         return self.fetchAll()
 
+    #dohvacanje ukupnog koristenja na datum
     def getUsageByDate(self, date):
         self.execute('''SELECT SUM(time) FROM usage WHERE date=?''',(date,))
         return self.fetchAll()
-
 
     def fetchOne(self):
         return self.cur.fetchone()
